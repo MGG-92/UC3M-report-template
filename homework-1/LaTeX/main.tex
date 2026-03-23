@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article}
+% Define the document class and paper size
+
+%% Load necessary packages
+
+% Text packages
+\usepackage[utf8]{inputenc} % Set the input encoding to UTF-8
+\usepackage{lmodern} % Use the Latin Modern font
+
+% Math packages
+\usepackage{amsmath} % Load the amsmath package for advanced math typesetting
+\usepackage{amsmath, amsthm} % Paquetes base de mates
+\usepackage{cancel} % Load the cancel package for striking through text
+\usepackage{siunitx} % Load the siunitx package for typesetting units
+
+% Graphics packages
+\usepackage{graphicx} % Load the graphicx package for including images
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm, headheight=27pt, footskip=1.5cm]{geometry} % Set the page margins
+
+% Page layout packages
+\usepackage{fancyhdr} % Load the fancyhdr package for custom headers and footers
+\fancyhf{}
+\rhead{\includegraphics[height=0.8cm]{Images/logo_header.png}} % Add the logo to the right header
+\cfoot{\vspace{10mm}\thepage} % Center the page number in the footer
+\renewcommand{\headrulewidth}{0.8pt} % Set the width of the header rule
+\renewcommand{\footrulewidth}{0.4pt} % Set the width of the footer rule
+\widowpenalty = 10000
+\clubpenalty = 10000
+% \interlinepenalty = 10000
+
+% MATLAB
+\usepackage{listings}
+\usepackage{xcolor} 
+\definecolor{commentgreen}{rgb}{0,0.5,0}
+\definecolor{stringred}{rgb}{0.64,0.08,0.08}
+\definecolor{keywordblue}{rgb}{0,0,1}
+\lstset{ 
+    language=Matlab,
+    backgroundcolor=\color{white},   
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    % --- COLORES ---
+    commentstyle=\color{commentgreen},
+    keywordstyle=\color{keywordblue},
+    stringstyle=\color{stringred},
+    % --- EL RECUADRO ---
+    frame=single, 
+    % --- NÚMEROS DE LÍNEA ---
+    numbers=left,                    % Posición de los números (left, right)
+    numberstyle=\tiny\color{gray},   % Tamaño y color de los números
+    numbersep=10pt,                  % Distancia entre el número y el código
+    stepnumber=1,                    % Cada cuántas líneas poner un número
+    showstringspaces=false
+}
+
+
+
+% Start document
+
+\begin{document}
+\input{Sections/titlepage.tex} % Include the title page from an external file
+\newpage
+\pagestyle{fancy} % Set the page style to fancy for the rest of the document
+
+\end{document}
