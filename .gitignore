@@ -1,0 +1,26 @@
+# MATLAB
+*.asv
+
+# VSCode
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+
+# LaTeX
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.lb
+*.synctex.gz
+*.fdb_latexmk
+*.pdf
