@@ -1,2 +1,1 @@
-# fluid-mechanics-homework
-Homework for Fluid Mechanics class
+Template for UC3M assignments
