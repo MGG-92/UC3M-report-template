@@ -23,5 +23,4 @@ __pycache__/
 *.lb
 *.synctex.gz
 *.fdb_latexmk
-*.pdf
-!report.pdf
+main.pdf
