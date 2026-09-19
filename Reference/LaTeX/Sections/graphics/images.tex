@@ -1,0 +1,166 @@
+\subsection{Images}
+
+Images are inserted using the following packages:
+
+\begin{lstlisting}[style=latex]
+\usepackage{graphicx}   % Images
+\usepackage{float}      % [H] positioning
+\usepackage{wrapfig}    % Wrapped figures
+\end{lstlisting}
+
+
+% ============================================================
+\subsubsection{Single Image}
+
+\begin{lstlisting}[style=latex]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]
+        {Images/image_placeholder.png}
+    \caption{Image caption}
+    \label{fig:image}
+\end{figure}
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]
+        {Images/image_placeholder.png}
+    \caption{Image caption}
+    \label{fig:image_example}
+\end{figure}
+
+
+% ============================================================
+\subsubsection{Image Size}
+
+The image size can be controlled using \texttt{width}:
+
+\begin{lstlisting}[style=latex]
+\includegraphics[width=\linewidth]
+    {Images/image_placeholder.png}
+
+\includegraphics[width=0.8\linewidth]
+    {Images/image_placeholder.png}
+
+\includegraphics[width=0.5\textwidth]
+    {Images/image_placeholder.png}
+\end{lstlisting}
+
+It can also be controlled using its height:
+
+\begin{lstlisting}[style=latex]
+\includegraphics[height=5cm]
+    {Images/image_placeholder.png}
+\end{lstlisting}
+
+
+% ============================================================
+\subsubsection{Two Images Side by Side}
+
+\begin{lstlisting}[style=latex]
+\begin{figure}[H]
+    \centering
+
+    \begin{minipage}{0.47\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]
+            {Images/image_placeholder.png}
+        \caption{First image}
+        \label{fig:image_1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.47\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]
+            {Images/image_placeholder.png}
+        \caption{Second image}
+        \label{fig:image_2}
+    \end{minipage}
+
+\end{figure}
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+
+    \begin{minipage}{0.47\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]
+            {Images/image_placeholder.png}
+        \caption{First image}
+        \label{fig:image_1_example}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.47\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]
+            {Images/image_placeholder.png}
+        \caption{Second image}
+        \label{fig:image_2_example}
+    \end{minipage}
+
+\end{figure}
+
+
+% ============================================================
+\subsubsection{Image Wrapped by Text}
+
+Use \texttt{wrapfigure} to place an image beside the text.
+
+\begin{lstlisting}[style=latex]
+\begin{wrapfigure}[8]{r}{0.42\textwidth}
+    \centering
+    \includegraphics[width=0.40\textwidth]
+        {Images/image_placeholder.png}
+    \caption{Image caption}
+    \label{fig:wrapped_image}
+\end{wrapfigure}
+\end{lstlisting}
+
+\begin{wrapfigure}[8]{r}{0.42\textwidth}
+    \centering
+    \includegraphics[width=0.40\textwidth]
+        {Images/image_placeholder.png}
+    \caption{Wrapped image}
+    \label{fig:wrapped_image_example}
+\end{wrapfigure}
+
+This text flows around the image. The first argument of \texttt{wrapfigure} determines its position. For example, \texttt{r} places the image on the right and \texttt{l} places it on the left. The number between brackets represents the number of lines wrapping around the image.
+
+\par % Placeholder text
+
+\vspace{4em}
+
+
+% ============================================================
+\subsubsection{Figure Positioning}
+
+Common figure positioning options are:
+
+\begin{lstlisting}[style=latex]
+    \begin{figure}[H]    % Exactly here
+    \begin{figure}[h]    % Preferably here
+    \begin{figure}[t]    % Top of page
+    \begin{figure}[b]    % Bottom of page
+    \begin{figure}[htbp] % Let LaTeX choose
+\end{lstlisting}
+
+Using \texttt{[H]} requires the \texttt{float} package.
+
+
+% ============================================================
+\subsubsection{Captions and References}
+
+Add a label immediately after the caption:
+
+\begin{lstlisting}[style=latex]
+\caption{Image caption}
+\label{fig:example}
+\end{lstlisting}
+
+The figure can then be referenced in the text:
+
+\begin{lstlisting}[style=latex]
+Figure~\ref{fig:example}
+\end{lstlisting}
