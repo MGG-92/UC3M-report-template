@@ -2,27 +2,12 @@
 % Define the document class and paper size
 
 %% Load necessary packages
+\input{Packages/Text/usepackages}
+\input{Packages/Math/usepackages}
+\input{Packages/Graphics/usepackages}
+\input{Packages/Page-layout/usepackages}
+\input{Packages/Code/usepackages.tex}
 
-% Text packages
-\usepackage[utf8]{inputenc} % Set the input encoding to UTF-8
-\usepackage{lmodern} % Use the Latin Modern font
-
-% Math packages
-\usepackage{amsmath} % Load the amsmath package for advanced math typesetting
-\usepackage{cancel} % Load the cancel package for striking through text
-\usepackage{siunitx} % Load the siunitx package for typesetting units
-
-% Graphics packages
-\usepackage{graphicx} % Load the graphicx package for including images
-\usepackage[top=2.7cm, bottom=3cm, left=3cm, right=3cm, headheight=27pt, footskip=1.5cm]{geometry} % Set the page margins
-\usepackage{float} % Load the float package for improved figure placement
-\usepackage{subcaption} % Load the subcaption package for subfigures
-\usepackage{wrapfig} % Load the wrapfig package for wrapping text around figures
-
-% Page layout packages
-\usepackage{fancyhdr} % Load the fancyhdr package for custom headers and footers
-\usepackage{amssymb} % For putting comands as \lesssim
-\usepackage{needspace} % For putting \needspace{5\baselineskip} before a figure to avoid breaking it across pages
 
 \fancyhf{}
 \rhead{\includegraphics[height=0.8cm]{Images/logo_header.png}} % Add the logo to the right header
@@ -33,8 +18,6 @@
 \clubpenalty10000
 
 
-
-
 % Start document
 
 \begin{document}
@@ -43,6 +26,5 @@
 \pagestyle{fancy} % Set the page style to fancy for the rest of the document
 \tableofcontents % Generate the table of contents
 \newpage
-
 
 \end{document}
