@@ -1,0 +1,53 @@
+\subsection{Internal and External Links}
+
+The \texttt{hyperref} package allows clickable links inside the document,
+including references, the table of contents, URLs, and links to other
+sections.
+
+\begin{lstlisting}[style=latex]
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,      % Internal links
+    filecolor=magenta,
+    urlcolor=cyan,
+    linktoc=all          % Title and page number are clickable
+}
+\end{lstlisting}
+
+To link to another part of the document, first create a label:
+
+\begin{lstlisting}[style=latex]
+\section{Control Systems}
+\label{sec:control}
+\end{lstlisting}
+
+Then reference it using:
+
+\begin{lstlisting}[style=latex]
+See Section~\ref{sec:control}.
+\end{lstlisting}
+
+A clickable text link can also be created with:
+
+\begin{lstlisting}[style=latex]
+\hyperref[sec:control]{Go to Control Systems}
+\end{lstlisting}
+
+For external URLs:
+
+\begin{lstlisting}[style=latex]
+\url{https://example.com}
+
+\href{https://example.com}{Example website}
+\end{lstlisting}
+
+If visible link colours or borders are not desired, use:
+
+\begin{lstlisting}[style=latex]
+\usepackage[hidelinks]{hyperref}
+\end{lstlisting}
+
+With \texttt{hidelinks}, the links remain clickable, but no coloured
+text or link borders are shown.
