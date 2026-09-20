@@ -24,4 +24,4 @@ __pycache__/
 *.synctex.gz
 *.fdb_latexmk
 main.pdf
-#delete_me.pdf
+delete_me.pdf
