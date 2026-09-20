@@ -1,0 +1,124 @@
+\subsection{Needspace -- Page Break Control}
+
+The \texttt{needspace} package starts a new page when there is not
+enough space for the material that follows. Load it in the preamble:
+
+\begin{lstlisting}[style=latex]
+\usepackage{needspace}
+\end{lstlisting}
+
+\subsubsection{Basic Usage}
+
+Place \verb|\Needspace| between paragraphs, immediately before
+the content that requires a minimum amount of space:
+
+\begin{lstlisting}[style=latex]
+Previous paragraph.
+
+\Needspace{5\baselineskip}
+This paragraph starts on the next page if less than
+five baseline spacings remain on the current page.
+\end{lstlisting}
+
+If enough space remains, the text continues normally.
+The command does not insert an empty gap.
+
+\subsubsection{Required Space}
+
+The argument is a vertical length. It can be expressed using
+physical units, the current line spacing or the text height:
+
+\begin{lstlisting}[style=latex]
+% Alternative ways to specify the required space:
+\Needspace{3cm}
+\Needspace{5\baselineskip}
+\Needspace{0.25\textheight}
+\end{lstlisting}
+
+Here, \verb|\baselineskip| is the distance between consecutive
+text baselines. The last example requests one quarter of the
+text area's height.
+
+\subsubsection{Headings and Following Text}
+
+Place the command before a heading to leave room for both the
+heading and the beginning of its text:
+
+\begin{lstlisting}[style=latex]
+\Needspace{7\baselineskip}
+\subsection{Results}
+
+The following results describe the response of the
+system under the selected operating conditions.
+\end{lstlisting}
+
+The requested space should include the heading, its vertical
+spacing and the desired number of text lines.
+
+\subsubsection{Short Lists}
+
+Reserve space before the introductory sentence to avoid
+separating it from the beginning of a list:
+
+\begin{lstlisting}[style=latex]
+\Needspace{8\baselineskip}
+The main assumptions are:
+
+\begin{itemize}
+    \item Steady flow.
+    \item Constant fluid density.
+    \item Negligible viscous losses.
+\end{itemize}
+\end{lstlisting}
+
+To keep the entire list together, allow enough space for all
+items and the spacing around them. Increase the requested
+length if the items occupy multiple lines.
+
+\subsubsection{Command Variants}
+
+The package provides an approximate command and two variants
+that check the available space directly:
+
+\begin{lstlisting}[style=latex]
+% Approximate space reservation
+\needspace{5\baselineskip}
+
+% Exact space check
+\Needspace{5\baselineskip}
+
+% Exact space check; preserves bottom alignment
+\Needspace*{5\baselineskip}
+\end{lstlisting}
+
+The lowercase command is faster but less precise.
+Both capitalized variants should be used between paragraphs.
+
+When a page is ended early, \verb|\needspace| and
+\verb|\Needspace| leave unused space at the bottom.
+The starred variant respects \verb|\flushbottom| when
+that setting is active:
+
+\begin{lstlisting}[style=latex]
+% Document setting
+\flushbottom
+
+% Later, between paragraphs
+\Needspace*{6\baselineskip}
+The following material requires additional room.
+\end{lstlisting}
+
+With \verb|\flushbottom|, stretchable vertical spacing can
+expand to align the bottom of the page. The star does not
+enable \verb|\flushbottom| by itself.
+
+\subsubsection{Practical Limitations}
+
+The package checks the requested length, not the actual
+height of the following content. A paragraph or list that
+exceeds that length can still continue on another page.
+
+Use the command in the main text flow, before the relevant
+material. It does not control the placement of floating
+figures or tables. In a two-column layout, an insufficient
+amount of space causes a break to the next column.
