@@ -1,0 +1,81 @@
+\subsection{Amsmath -- Mathematical Expressions}
+
+The \texttt{amsmath} package extends the default mathematical capabilities of \LaTeX. It provides additional environments and commands for writing equations, aligned expressions, matrices and other mathematical structures.
+
+
+\subsubsection{Equations}
+
+Use the \texttt{equation} environment for a numbered equation:
+
+\begin{lstlisting}[style=latex]
+\begin{equation}
+    F = ma
+\end{equation}
+\end{lstlisting}
+
+For an equation without numbering, use the starred version:
+
+\begin{lstlisting}[style=latex]
+\begin{equation*}
+    F = ma
+\end{equation*}
+\end{lstlisting}
+
+
+\subsubsection{Aligned Equations}
+
+The \texttt{align} environment is useful when several equations must be aligned at a common point, usually the equals sign:
+
+\begin{lstlisting}[style=latex]
+\begin{align}
+    F &= ma \\
+    a &= \frac{F}{m}
+\end{align}
+\end{lstlisting}
+
+The ampersand \verb|&| determines the alignment point. As with \texttt{equation}, the starred version suppresses equation numbers:
+
+\begin{lstlisting}[style=latex]
+\begin{align*}
+    F &= ma \\
+    a &= \frac{F}{m}
+\end{align*}
+\end{lstlisting}
+
+
+\subsubsection{Multiple Lines in One Equation}
+
+The \texttt{split} environment can be used inside an \texttt{equation} when a single equation requires several lines:
+
+\begin{lstlisting}[style=latex]
+\begin{equation}
+\begin{split}
+    E &= T + V \\
+      &= \frac{1}{2}mv^2 + mgh
+\end{split}
+\end{equation}
+\end{lstlisting}
+
+
+\subsubsection{Matrices}
+
+The package also provides several matrix environments:
+
+\begin{lstlisting}[style=latex]
+\[
+A =
+\begin{bmatrix}
+    1 & 2 \\
+    3 & 4
+\end{bmatrix}
+\]
+\end{lstlisting}
+
+Common alternatives include:
+
+\begin{lstlisting}[style=latex]
+\begin{matrix}  ... \end{matrix}  % No delimiters
+\begin{pmatrix} ... \end{pmatrix} % Parentheses
+\begin{bmatrix} ... \end{bmatrix} % Square brackets
+\begin{vmatrix} ... \end{vmatrix} % Vertical bars
+\end{lstlisting}

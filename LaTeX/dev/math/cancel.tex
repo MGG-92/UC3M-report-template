@@ -1,0 +1,47 @@
+\subsection{Cancel -- Cancellation}
+
+The \texttt{cancel} package is used to visually cancel terms in mathematical expressions. It is particularly useful when showing intermediate steps in a derivation.
+
+The basic command draws a diagonal line through a term:
+
+\begin{lstlisting}[style=latex]
+\[
+\frac{\cancel{x}y}{\cancel{x}z}
+=
+\frac{y}{z}
+\]
+\end{lstlisting}
+
+Several cancellation commands are available:
+
+\begin{lstlisting}[style=latex]
+\[
+\cancel{x}
+\qquad
+\bcancel{x}
+\qquad
+\xcancel{x}
+\qquad
+\cancelto{0}{x}
+\]
+\end{lstlisting}
+
+Their behavior is:
+
+\begin{itemize}
+    \item \verb|\cancel{}| draws a diagonal line from lower left
+          to upper right.
+    \item \verb|\bcancel{}| draws the diagonal in the opposite
+          direction.
+    \item \verb|\xcancel{}| draws both diagonals.
+    \item \verb|\cancelto{}{}| cancels a term and indicates the
+          value to which it is reduced.
+\end{itemize}
+
+For example:
+
+\begin{lstlisting}[style=latex]
+\[
+a + \cancelto{0}{b-b} = a
+\]
+\end{lstlisting}

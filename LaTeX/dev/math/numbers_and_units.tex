@@ -1,0 +1,65 @@
+\subsection{Siunitx -- Numbers and Units}
+
+The \texttt{siunitx} package provides a consistent way of writing numbers, physical quantities and units. It automatically handles the spacing between numerical values and their units.
+
+
+\subsubsection{Physical Quantities}
+
+Use \verb|\qty| to combine a numerical value and a unit:
+
+\begin{lstlisting}[style=latex]
+\[
+v = \qty{25}{\meter\per\second}
+\]
+\end{lstlisting}
+
+More complex units can be constructed by combining the predefined unit commands:
+
+\begin{lstlisting}[style=latex]
+\[
+a = \qty{9.81}{\meter\per\second\squared}
+\]
+
+\[
+P = \qty{101.3}{\kilo\pascal}
+\]
+
+\[
+\rho = \qty{1.225}{\kilogram\per\meter\cubed}
+\]
+\end{lstlisting}
+
+
+\subsubsection{Units Without Values}
+
+Use \verb|\unit| when only the unit is required:
+
+\begin{lstlisting}[style=latex]
+The velocity is expressed in \unit{\meter\per\second}.
+\end{lstlisting}
+
+
+\subsubsection{Numbers}
+
+The \verb|\num| command formats numerical values consistently:
+
+\begin{lstlisting}[style=latex]
+\num{12345.678}
+
+\num{3.2e8}
+\end{lstlisting}
+
+Scientific notation, decimal separators and digit grouping are handled automatically by the package.
+
+
+\subsubsection{Angles}
+
+Angles can be written using \verb|\ang|:
+
+\begin{lstlisting}[style=latex]
+\[
+\alpha = \ang{30}
+\]
+\end{lstlisting}
+
+The package automatically adds the degree symbol and applies the appropriate spacing.
