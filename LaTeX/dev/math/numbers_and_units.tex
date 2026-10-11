@@ -1,11 +1,12 @@
 \subsection{Siunitx -- Numbers and Units}
 
-The \texttt{siunitx} package provides a consistent way of writing numbers, physical quantities and units. It automatically handles the spacing between numerical values and their units.
+The \texttt{siunitx} package provides consistent formatting for
+numbers, physical quantities, and units.
 
 
 \subsubsection{Physical Quantities}
 
-Use \verb|\qty| to combine a numerical value and a unit:
+Use \verb|\qty| to write a numerical value together with its unit:
 
 \begin{lstlisting}[style=latex]
 \[
@@ -13,7 +14,11 @@ v = \qty{25}{\meter\per\second}
 \]
 \end{lstlisting}
 
-More complex units can be constructed by combining the predefined unit commands:
+\[
+v = \qty{25}{\meter\per\second}
+\]
+
+More complex units can be constructed by combining unit commands:
 
 \begin{lstlisting}[style=latex]
 \[
@@ -21,35 +26,59 @@ a = \qty{9.81}{\meter\per\second\squared}
 \]
 
 \[
-P = \qty{101.3}{\kilo\pascal}
+\rho = \qty{1.225}{\kilogram\per\meter\cubed}
+\]
+\end{lstlisting}
+
+\[
+a = \qty{9.81}{\meter\per\second\squared}
 \]
 
 \[
 \rho = \qty{1.225}{\kilogram\per\meter\cubed}
 \]
-\end{lstlisting}
 
 
 \subsubsection{Units Without Values}
 
-Use \verb|\unit| when only the unit is required:
+The \verb|\unit| command displays a unit without an associated
+numerical value:
 
 \begin{lstlisting}[style=latex]
-The velocity is expressed in \unit{\meter\per\second}.
+\[
+\unit{\meter\per\second}
+\qquad
+\unit{\newton}
+\qquad
+\unit{\pascal}
+\]
 \end{lstlisting}
+
+\[
+\unit{\meter\per\second}
+\qquad
+\unit{\newton}
+\qquad
+\unit{\pascal}
+\]
 
 
 \subsubsection{Numbers}
 
-The \verb|\num| command formats numerical values consistently:
+The \verb|\num| command provides consistent formatting for
+numerical values:
 
 \begin{lstlisting}[style=latex]
-\num{12345.678}
+\num{12500}
 
 \num{3.2e8}
 \end{lstlisting}
 
-Scientific notation, decimal separators and digit grouping are handled automatically by the package.
+\[
+\num{12500}
+\qquad
+\num{3.2e8}
+\]
 
 
 \subsubsection{Angles}
@@ -59,7 +88,17 @@ Angles can be written using \verb|\ang|:
 \begin{lstlisting}[style=latex]
 \[
 \alpha = \ang{30}
+\qquad
+\beta = \ang{45}
+\qquad
+\gamma = \ang{90}
 \]
 \end{lstlisting}
 
-The package automatically adds the degree symbol and applies the appropriate spacing.
+\[
+\alpha = \ang{30}
+\qquad
+\beta = \ang{45}
+\qquad
+\gamma = \ang{90}
+\]
