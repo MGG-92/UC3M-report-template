@@ -1,10 +1,5 @@
 {
-  "$schema": "http://json.schemastore.org/vsls",
+  "$schema": "https://json.schemastore.org/vsls",
   "gitignore": "none",
-  "excludeFiles": [
-    ".env",
-    ".env.*",
-    "**/secrets/**",
-    "**/*secret*"
-  ]
+  "excludeFiles": [".env", ".env.*", "**/secrets/**", "**/*secret*"]
 }
