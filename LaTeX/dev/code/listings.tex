@@ -1,0 +1,37 @@
+\subsection{Listings -- Source Code}
+
+The \texttt{listings} package is used to display source code while
+preserving indentation and formatting. Different styles can be used
+depending on the programming language.
+
+For example, MATLAB code can be displayed using the
+\texttt{matlab} style:
+
+\begin{lstlisting}[style=matlab]
+clc
+clear
+
+x = linspace(0, 2*pi, 100);
+y = sin(x);
+
+plot(x,y)
+\end{lstlisting}
+
+The corresponding environment is opened with:
+
+\begin{lstlisting}[style=latex]
+\begin{lstlisting}[style=matlab]
+\end{lstlisting}
+
+and closed using \verb|\end{lstlisting}|.
+
+The appearance of the code listings is configured in
+\texttt{Packages/Code/package\_config.tex}. This file defines the
+available styles, including properties such as the font, colors,
+background, line numbering and spacing.
+
+When adding or modifying a code style, it is recommended to make the
+changes in this configuration file rather than changing individual
+listings throughout the document.
+
+

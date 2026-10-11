@@ -1,0 +1,53 @@
+\subsection{Multicol -- Multiple Columns}
+
+The \texttt{multicol} package divides part of the document into
+multiple columns. The number of columns is specified when opening
+the environment:
+
+\begin{lstlisting}[style=latex]
+\begin{multicols*}{4}
+
+    Content of the first column
+
+    \columnbreak
+
+    Content of the second column
+
+    \columnbreak
+
+    Content of the third column
+
+    \columnbreak
+
+    Content of the fourth column
+
+\end{multicols*}
+\end{lstlisting}
+
+The example above creates four columns. The
+\verb|\columnbreak| command can be used to manually move to the next
+column.
+
+This is particularly useful when several short sections must be
+arranged compactly on the same page:
+
+\begin{lstlisting}[style=latex]
+\begin{multicols*}{3}
+    \input{sections/hooke}
+    \input{sections/bending}
+
+    \columnbreak
+
+    \input{sections/torsion}
+    \input{sections/power}
+
+    \columnbreak
+
+    \input{sections/buckling}
+\end{multicols*}
+\end{lstlisting}
+
+The starred environment \texttt{multicols*} does not automatically
+balance the height of the final columns. This is useful when the
+position of the content is controlled manually using
+\verb|\columnbreak|.
