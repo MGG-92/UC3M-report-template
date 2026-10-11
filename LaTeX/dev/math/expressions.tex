@@ -1,0 +1,127 @@
+\subsection{Amsmath -- Mathematical Expressions}
+
+The \texttt{amsmath} package extends the mathematical capabilities
+of \LaTeX, providing additional environments for equations,
+alignment, and matrices.
+
+
+\subsubsection{Equations}
+
+A numbered equation can be created using the \texttt{equation}
+environment:
+
+\begin{lstlisting}[style=latex]
+\begin{equation}
+    F = ma
+\end{equation}
+\end{lstlisting}
+
+\begin{equation}
+    F = ma
+\end{equation}
+
+The starred version removes the equation number:
+
+\begin{lstlisting}[style=latex]
+\begin{equation*}
+    E = mc^2
+\end{equation*}
+\end{lstlisting}
+
+\begin{equation*}
+    E = mc^2
+\end{equation*}
+
+
+\subsubsection{Aligned Equations}
+
+The \texttt{align} environment aligns several equations at a
+common point. The alignment point is indicated using \verb|&|:
+
+\begin{lstlisting}[style=latex]
+\begin{align}
+    F &= ma \\
+    a &= \frac{F}{m}
+\end{align}
+\end{lstlisting}
+
+\begin{align}
+    F &= ma \\
+    a &= \frac{F}{m}
+\end{align}
+
+
+\subsubsection{Multiple Lines in One Equation}
+
+The \texttt{split} environment can be used when a single equation
+must be written across several lines:
+
+\begin{lstlisting}[style=latex]
+\begin{equation}
+\begin{split}
+    E &= T + V \\
+      &= \frac{1}{2}mv^2 + mgh
+\end{split}
+\end{equation}
+\end{lstlisting}
+
+\begin{equation}
+\begin{split}
+    E &= T + V \\
+      &= \frac{1}{2}mv^2 + mgh
+\end{split}
+\end{equation}
+
+All lines share the same equation number.
+
+
+\subsubsection{Matrices}
+
+Different matrix environments can be used depending on the desired
+delimiters:
+
+\begin{lstlisting}[style=latex]
+\[
+A =
+\begin{bmatrix}
+    1 & 2 \\
+    3 & 4
+\end{bmatrix}
+\]
+\end{lstlisting}
+
+\[
+A =
+\begin{bmatrix}
+    1 & 2 \\
+    3 & 4
+\end{bmatrix}
+\]
+
+Other common matrix types are:
+
+\begin{lstlisting}[style=latex]
+\[
+\begin{pmatrix}
+    1 & 2 \\
+    3 & 4
+\end{pmatrix}
+\qquad
+\begin{vmatrix}
+    1 & 2 \\
+    3 & 4
+\end{vmatrix}
+\]
+\end{lstlisting}
+
+\[
+\begin{pmatrix}
+    1 & 2 \\
+    3 & 4
+\end{pmatrix}
+\qquad
+\begin{vmatrix}
+    1 & 2 \\
+    3 & 4
+\end{vmatrix}
+\]
