@@ -21,7 +21,7 @@
 % Small helpers for consistent headings and examples; no new listing styles.
 \newcommand{\packagegroup}[2]{\clearpage\section{#2}\label{class:#1}}
 \newcommand{\packageentry}[2]{\Needspace{9\baselineskip}\subsection{#2}\label{#1}}
-\newcommand{\partlabel}[1]{\par\smallskip\noindent\textbf{#1}\par\nobreak}
+\newcommand{\partlabel}[1]{\Needspace{5\baselineskip}\par\smallskip\noindent\textbf{#1}\par\nobreak}
 % Distinct environment name lets examples contain literal lstlisting blocks.
 \lstnewenvironment{referencecode}{\lstset{style=latex,
   breaklines=false,upquote=true,rulecolor=\color{black!30}}}{}

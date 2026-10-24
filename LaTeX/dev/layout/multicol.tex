@@ -24,24 +24,29 @@
 \par\endgroup
 Use \texttt{\string\linewidth} to size content inside a column.
 Ordinary single-column floats are not supported within \texttt{multicols}.
-\partlabel{Manual columns -- no balancing on the last page}
+
+\begin{nobreaks}
+    
+\partlabel{Columns inside a box -- balanced}
 \begin{referencecode}
-\begin{multicols*}{3}
+\begin{multicols}{3}
     \lipsum[1][1-2]
     \columnbreak
     \lipsum[2][1-2]
     \columnbreak
     \lipsum[3][1-2]
-\end{multicols*}
+\end{multicols}
 \end{referencecode}
 \begingroup
 \setlength{\columnsep}{8mm}\setlength{\columnseprule}{0pt}
 
-\begin{multicols*}{3}
+\begin{multicols}{3}
     \lipsum[1][1-2]
     \columnbreak
     \lipsum[2][1-2]
     \columnbreak
     \lipsum[3][1-2]
-\end{multicols*}
+\end{multicols}
 \par\endgroup
+
+\end{nobreaks}
