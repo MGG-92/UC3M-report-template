@@ -2,6 +2,7 @@
 \usepackage[top=2.7cm, bottom=3cm, left=3cm, right=3cm, headheight=27pt, footskip=1.5cm]{geometry} % Set the page margins
 \usepackage{fancyhdr} % Load the fancyhdr package for custom headers and footers
 \usepackage{amssymb} % For putting comands as \lesssim
+\newenvironment{nobreaks}{\vbox\bgroup}{\egroup} % Prevents page breaks within the environment, keeping its content together.
 \usepackage{needspace} % For putting \needspace{5\baselineskip} before a figure to avoid breaking it across pages
 \usepackage[hidelinks]{hyperref}
 
