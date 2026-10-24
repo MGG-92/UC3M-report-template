@@ -1,0 +1,66 @@
+\packageentry{links}{hyperref -- Links and references}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\end{referencecode}
+\partlabel{Labels and references}
+\begin{referencecode}
+\section{Model}
+\label{sec:model}
+
+\begin{equation}
+    F = ma
+    \label{eq:force}
+\end{equation}
+
+See section~\ref{sec:model}.
+We use equation~\eqref{eq:force}.
+\hyperref[sec:model]{Return to the model}.
+\href{https://www.uc3m.es}{UC3M website}.
+\url{https://www.uc3m.es}
+\end{referencecode}
+
+% Keep the example's section out of the guide's numbering and contents.
+\begingroup
+\edef\savedsection{\arabic{section}}
+\edef\savedsubsection{\arabic{subsection}}
+\edef\savedsubsubsection{\arabic{subsubsection}}
+\setcounter{section}{0}
+\renewcommand{\section}[1]{\refstepcounter{section}\subsubsection*{\thesection\quad #1}}
+
+\section{Model}
+\label{sec:model-functional}
+
+\begin{equation}
+    F = ma
+    \label{eq:force-functional}
+\end{equation}
+
+See section~\ref{sec:model-functional}.
+We use equation~\eqref{eq:force-functional}.
+\hyperref[sec:model-functional]{Return to the model}.
+\href{https://www.uc3m.es}{UC3M website}.
+\url{https://www.uc3m.es}
+
+\setcounter{section}{\savedsection}
+\setcounter{subsection}{\savedsubsection}
+\setcounter{subsubsection}{\savedsubsubsection}
+\endgroup
+\partlabel{Unnumbered heading in the contents}
+\begin{referencecode}
+\tableofcontents
+% An unnumbered section included in the contents:
+\section*{Acknowledgements}
+\phantomsection
+\addcontentsline{toc}{section}{Acknowledgements}
+\end{referencecode}
+
+\begin{quote}
+\textbf{Contents}\par
+Acknowledgements\dotfill 1\par\medskip
+\textbf{Acknowledgements}
+\end{quote}
+The heading stays unnumbered while its entry appears in the contents.
+Compile twice to resolve references. Figure and table labels go after
+their captions; equation labels go inside the equation environment.

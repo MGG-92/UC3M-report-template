@@ -1,0 +1,36 @@
+\packageentry{space}{needspace -- Page break control}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{needspace,lipsum}
+\end{referencecode}
+\partlabel{Reserve room before a heading}
+\begin{referencecode}
+\lipsum[1][1-3]
+
+\Needspace{8\baselineskip}
+\subsection{Results}
+\lipsum[2][1-4]
+\end{referencecode}
+
+\begingroup
+\renewcommand{\subsection}[1]{\subsubsection*{#1}}
+
+\lipsum[1][1-3]
+
+\Needspace{8\baselineskip}
+\subsection{Results}
+\lipsum[2][1-4]
+\par
+\endgroup
+If fewer than eight baseline spacings remain, the heading and its opening
+text start on the next page.
+\begin{tabularx}{\linewidth}{@{}p{53mm}X@{}}\toprule
+Command & Use \\\midrule
+\texttt{\string\Needspace\{3cm\}} & Break if less than 3 cm remains. \\
+\texttt{\string\needspace\{3cm\}} & Approximate reservation. \\
+\texttt{\string\Needspace*\{3cm\}} & Preserve bottom alignment with \texttt{\string\flushbottom}. \\
+\texttt{\string\newpage} & Force a page break. \\
+\texttt{\string\clearpage} & Break and place pending floats first. \\
+\bottomrule\end{tabularx}
+The requested length must include the heading and its spacing. The command
+does not measure the following block or control floating figures.

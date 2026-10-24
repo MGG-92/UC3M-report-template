@@ -1,53 +1,47 @@
-\subsection{Multicol -- Multiple Columns of text}
-
-The \texttt{multicol} package divides part of the document into
-multiple columns. The number of columns is specified when opening
-the environment:
-
-\begin{lstlisting}[style=latex]
-\begin{multicols*}{4}
-
-    Content of the first column
-
+\packageentry{columns}{multicol -- Multiple columns}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{multicol,lipsum}
+\setlength{\columnsep}{8mm}
+\setlength{\columnseprule}{0pt}
+\end{referencecode}
+\partlabel{Balanced columns}
+\begin{referencecode}
+\begin{multicols}{2}
+    \lipsum[1][1-4]
     \columnbreak
+    \lipsum[2][1-4]
+\end{multicols}
+\end{referencecode}
+\begingroup
+\setlength{\columnsep}{8mm}\setlength{\columnseprule}{0pt}
 
-    Content of the second column
-
+\begin{multicols}{2}
+    \lipsum[1][1-4]
     \columnbreak
-
-    Content of the third column
-
-    \columnbreak
-
-    Content of the fourth column
-
-\end{multicols*}
-\end{lstlisting}
-
-The example above creates four columns. The
-\verb|\columnbreak| command can be used to manually move to the next
-column.
-
-This is particularly useful when several short sections must be
-arranged compactly on the same page:
-
-\begin{lstlisting}[style=latex]
+    \lipsum[2][1-4]
+\end{multicols}
+\par\endgroup
+Use \texttt{\string\linewidth} to size content inside a column.
+Ordinary single-column floats are not supported within \texttt{multicols}.
+\partlabel{Manual columns -- no balancing on the last page}
+\begin{referencecode}
 \begin{multicols*}{3}
-    \input{sections/hooke}
-    \input{sections/bending}
-
+    \lipsum[1][1-2]
     \columnbreak
-
-    \input{sections/torsion}
-    \input{sections/power}
-
+    \lipsum[2][1-2]
     \columnbreak
-
-    \input{sections/buckling}
+    \lipsum[3][1-2]
 \end{multicols*}
-\end{lstlisting}
+\end{referencecode}
+\begingroup
+\setlength{\columnsep}{8mm}\setlength{\columnseprule}{0pt}
 
-The starred environment \texttt{multicols*} does not automatically
-balance the height of the final columns. This is useful when the
-position of the content is controlled manually using
-\verb|\columnbreak|.
+\begin{multicols*}{3}
+    \lipsum[1][1-2]
+    \columnbreak
+    \lipsum[2][1-2]
+    \columnbreak
+    \lipsum[3][1-2]
+\end{multicols*}
+\par\endgroup

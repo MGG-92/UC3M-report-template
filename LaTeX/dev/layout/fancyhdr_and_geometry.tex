@@ -1,0 +1,25 @@
+\packageentry{layout}{fancyhdr and geometry -- Page layout}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage[margin=25mm,headheight=24pt]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Course name}
+\fancyhead[R]{Short title}
+\fancyfoot[C]{\thepage}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\end{referencecode}
+
+\begin{center}\fbox{\begin{minipage}{0.88\linewidth}
+\setlength{\parskip}{6pt}
+Course name\hfill Short title\par\smallskip\hrule
+\medskip\lipsum[1][1-2]\medskip
+\begin{center}1\end{center}
+\end{minipage}}\end{center}
+Header and footer shown at reduced page height.
+\texttt{geometry} sets the margins; \texttt{fancyhdr} sets the header and
+footer. For one page without either, use \verb|\thispagestyle{empty}|.
+\texttt{\string\linewidth} is the local width; \texttt{\string\textwidth}
+is the full page text width.

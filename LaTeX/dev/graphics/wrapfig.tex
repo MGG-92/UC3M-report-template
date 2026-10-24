@@ -1,0 +1,30 @@
+\packageentry{wrap}{wrapfig -- Text around an image}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{graphicx,wrapfig,lipsum}
+\end{referencecode}
+\partlabel{Image followed by a paragraph}
+\begin{referencecode}
+\begin{wrapfigure}{r}{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]
+        {Images/image_placeholder.png}
+    \caption{Experimental setup.}
+    \label{fig:setup}
+\end{wrapfigure}
+\lipsum[1]
+\end{referencecode}
+
+\begin{wrapfigure}{r}{0.32\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]
+        {Images/image_placeholder.png}
+    \caption{Experimental setup.}
+    \label{fig:setup-functional}
+\end{wrapfigure}
+\lipsum[1]
+
+\par
+\texttt{r} places the image on the right; \texttt{l}, on the left.
+The optional argument \texttt{[10]} sets the number of wrapped lines.
+Avoid nearby headings, lists and page breaks.

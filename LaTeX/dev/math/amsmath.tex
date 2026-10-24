@@ -1,0 +1,41 @@
+\packageentry{equations}{amsmath -- Equations and matrices}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{amsmath}
+\end{referencecode}
+\partlabel{Aligned equations -- one number per line}
+\begin{referencecode}
+\begin{align}
+    F &= ma \label{eq:dynamics} \\
+    a &= \frac{F}{m} \label{eq:acceleration}
+\end{align}
+\end{referencecode}
+
+\begin{align}
+    F &= ma \label{eq:dynamics-functional} \\
+    a &= \frac{F}{m} \label{eq:acceleration-functional}
+\end{align}
+
+\partlabel{Several lines -- one equation number}
+\begin{referencecode}
+\begin{equation}
+    \begin{split}
+        E &= T + V \\
+          &= \frac{1}{2}mv^2 + mgh
+    \end{split}
+    \label{eq:energy}
+\end{equation}
+\end{referencecode}
+
+\begin{equation}
+    \begin{split}
+        E &= T + V \\
+          &= \frac{1}{2}mv^2 + mgh
+    \end{split}
+    \label{eq:energy-functional}
+\end{equation}
+
+Use \texttt{align*} for no numbering, \texttt{\string\notag} to suppress
+one line number, and \texttt{\string\eqref\{label\}} for a reference.
+\texttt{\&} marks alignment; \texttt{\\} separates lines.
+\input{dev/math/matrices}

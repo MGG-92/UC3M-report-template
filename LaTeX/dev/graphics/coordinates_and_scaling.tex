@@ -1,0 +1,39 @@
+\subsubsection*{Coordinates and scaling}
+\begin{referencecode}
+\begin{tikzpicture}[scale=0.85,transform shape]
+    \coordinate (s) at (0,0);
+    \coordinate (p) at (8,0);
+    \coordinate (quarter) at ($(s)!0.25!(p)$);
+    \coordinate (centre) at ($(s)!0.50!(p)$);
+    \coordinate (threequarters) at ($(s)!0.75!(p)$);
+    \draw[->] (s) -- (p);
+    \foreach \point/\percent in
+        {s/0,quarter/25,centre/50,threequarters/75,p/100} {
+        \fill (\point) circle (1.5pt);
+        \node[below=3mm] at (\point) {\percent\%};
+    }
+\end{tikzpicture}
+\end{referencecode}
+
+\begin{figure}[H]\centering
+
+\begin{tikzpicture}[scale=0.85,transform shape]
+    \coordinate (s) at (0,0);
+    \coordinate (p) at (8,0);
+    \coordinate (quarter) at ($(s)!0.25!(p)$);
+    \coordinate (centre) at ($(s)!0.50!(p)$);
+    \coordinate (threequarters) at ($(s)!0.75!(p)$);
+    \draw[->] (s) -- (p);
+    \foreach \point/\percent in
+        {s/0,quarter/25,centre/50,threequarters/75,p/100} {
+        \fill (\point) circle (1.5pt);
+        \node[below=3mm] at (\point) {\percent\%};
+    }
+\end{tikzpicture}
+
+\caption{Interpolated coordinates at a scale of 0.85.}
+\end{figure}
+\verb|--| draws a straight line; \verb+|-+ goes vertically then
+horizontally; \verb+-|+ does the reverse.
+\texttt{calc} enables interpolation between nodes.
+\texttt{transform shape} scales the node text and shapes too.

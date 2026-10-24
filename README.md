@@ -7,7 +7,10 @@ Template for university assignments and a quick LaTeX package reference.
 Open `Package Reference.pdf` at the repository root. Packages are grouped by
 class and sorted alphabetically within each class. The guide uses 10 pt
 serif text and ordinary selectable PDF code. Code and rendered examples live
-together in each `LaTeX/dev/<class>/packages.tex` file.
+together in the topic files under `LaTeX/dev/<class>/` (for example,
+`math/amsmath.tex` and `graphics/tikz.tex`). Each class's `packages.tex` contains
+only its heading and the ordered `\input` statements. Longer entries include
+separate files for their subsections, such as `graphics/feedback.tex`.
 
 Place the rendered example directly after its code, without a Result heading.
 Keep both versions in sync when editing. Package-loading instructions do not
@@ -15,7 +18,7 @@ need a separate output example.
 
 To update the reference:
 
-1. Edit the relevant `LaTeX/dev/<class>/packages.tex` file.
+1. Edit the topic file under `LaTeX/dev/<class>/`; update `packages.tex` only to add or reorder topics.
 2. Compile `dev.tex` twice from `LaTeX/`.
 3. Copy `LaTeX/dev.pdf` to the root as `Package Reference.pdf`.
 

@@ -1,0 +1,43 @@
+\packageentry{units}{siunitx -- Numbers and units}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{siunitx}
+\sisetup{
+    output-decimal-marker={.},
+    per-mode=symbol
+}
+\end{referencecode}
+\partlabel{Quantities, numbers and angles}
+\begin{referencecode}
+\[
+    v = \qty{25}{\meter\per\second}
+    \qquad
+    a = \qty{9.81}{\meter\per\second\squared}
+\]
+\[
+    \rho = \qty{1.225}{\kilogram\per\meter\cubed}
+    \qquad F = \qty{15}{\newton}
+\]
+Numbers: \num{12500} and \num{3.2e8}.
+Units only: \unit{\pascal} and \unit{\newton\meter}.
+Angles: \ang{30} and \ang{45;30;0}.
+\end{referencecode}
+\begingroup\sisetup{output-decimal-marker={.},per-mode=symbol}
+
+\[
+    v = \qty{25}{\meter\per\second}
+    \qquad
+    a = \qty{9.81}{\meter\per\second\squared}
+\]
+\[
+    \rho = \qty{1.225}{\kilogram\per\meter\cubed}
+    \qquad F = \qty{15}{\newton}
+\]
+Numbers: \num{12500} and \num{3.2e8}.
+Units only: \unit{\pascal} and \unit{\newton\meter}.
+Angles: \ang{30} and \ang{45;30;0}.
+\par\endgroup
+Set \texttt{output-decimal-marker=\{,\}} for a decimal comma and
+\texttt{per-mode=reciprocal} for negative unit powers.
+\texttt{\string\qty} and \texttt{\string\unit} require \texttt{siunitx} v3;
+the older v2 equivalents are \texttt{\string\SI} and \texttt{\string\si}.

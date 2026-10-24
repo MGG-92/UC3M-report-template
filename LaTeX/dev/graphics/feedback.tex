@@ -1,0 +1,41 @@
+\subsubsection*{Feedback loop}
+\phantomsection\label{feedback}
+Uses the template styles listed on page~\pageref{tikz}.
+\begin{referencecode}
+\begin{tikzpicture}[node distance=11mm]
+    \node[input] (r) {$R(s)$};
+    \node[sum,right=of r] (s) {};
+    \node[block,right=of s] (g) {$G(s)$};
+    \node[pickoff,right=of g] (p) {};
+    \node[output,right=of p] (y) {$Y(s)$};
+    \coordinate (mid) at ($(s)!0.5!(p)$);
+    \node[block,below=12mm of mid] (h) {$H(s)$};
+    \draw[->] (r) -- node[near end,above] {$+$} (s);
+    \draw[->] (s) -- (g);
+    \draw (g) -- (p);
+    \draw[->] (p) -- (y);
+    \draw[->] (p) |- (h.east);
+    \draw[->] (h.west) -| node[near end,left] {$-$} (s.south);
+\end{tikzpicture}
+\end{referencecode}
+
+\begin{figure}[H]\centering
+
+\begin{tikzpicture}[node distance=11mm]
+    \node[input] (r) {$R(s)$};
+    \node[sum,right=of r] (s) {};
+    \node[block,right=of s] (g) {$G(s)$};
+    \node[pickoff,right=of g] (p) {};
+    \node[output,right=of p] (y) {$Y(s)$};
+    \coordinate (mid) at ($(s)!0.5!(p)$);
+    \node[block,below=12mm of mid] (h) {$H(s)$};
+    \draw[->] (r) -- node[near end,above] {$+$} (s);
+    \draw[->] (s) -- (g);
+    \draw (g) -- (p);
+    \draw[->] (p) -- (y);
+    \draw[->] (p) |- (h.east);
+    \draw[->] (h.west) -| node[near end,left] {$-$} (s.south);
+\end{tikzpicture}
+
+\caption{Negative-feedback block diagram.}\label{fig:feedback-loop}
+\end{figure}

@@ -1,22 +1,19 @@
-\subsection{Xcolor -- Colors}
+\packageentry{colour}{xcolor -- Colours}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{xcolor}
+\definecolor{accent}{gray}{0.35}
+\end{referencecode}
+\partlabel{Local colour}
+\begin{referencecode}
+\textcolor{accent}{Text in dark grey.}
+{\color{accent}A local colour change.}
+\end{referencecode}
 
-The \texttt{xcolor} package provides color support in \LaTeX. In this
-template, it is mainly used by \texttt{listings} to add syntax
-highlighting and other colors to source code.
+\begingroup\definecolor{accent}{gray}{0.35}
 
-For example, a code style may define different colors for comments,
-keywords and strings:
-
-\begin{lstlisting}[style=latex]
-\definecolor{codegreen}{RGB}{0,120,0}
-\definecolor{codeblue}{RGB}{0,70,180}
-
-\lstdefinestyle{example}{
-    keywordstyle=\color{codeblue},
-    commentstyle=\color{codegreen}
-}
-\end{lstlisting}
-
-Normally, these settings do not need to be defined inside the main
-document. The code colors and listing styles are configured in
-\texttt{Packages/Code/package\_config.tex}.
+\textcolor{accent}{Text in dark grey.}
+{\color{accent}A local colour change.}
+\par\endgroup
+\texttt{\string\textcolor} affects its argument; \texttt{\string\color}
+affects the rest of the current group. Define colours once in the preamble.
