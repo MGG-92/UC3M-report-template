@@ -1,5 +1,181 @@
-\section{Document layout, page layout and formatting packages}
+\packagegroup{layout}{Document layout packages}
+\packageentry{layout}{fancyhdr and geometry -- Page layout}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage[margin=25mm,headheight=24pt]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Course name}
+\fancyhead[R]{Short title}
+\fancyfoot[C]{\thepage}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\end{referencecode}
 
-\input{dev/layout/indoc_linking}
-\input{dev/layout/space_control}
-\input{dev/layout/multicol}
+\begin{center}\fbox{\begin{minipage}{0.88\linewidth}
+\setlength{\parskip}{6pt}
+Course name\hfill Short title\par\smallskip\hrule
+\medskip\lipsum[1][1-2]\medskip
+\begin{center}1\end{center}
+\end{minipage}}\end{center}
+Header and footer shown at reduced page height.
+\texttt{geometry} sets the margins; \texttt{fancyhdr} sets the header and
+footer. For one page without either, use \verb|\thispagestyle{empty}|.
+\texttt{\string\linewidth} is the local width; \texttt{\string\textwidth}
+is the full page text width.
+
+\clearpage
+\packageentry{links}{hyperref -- Links and references}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\end{referencecode}
+\partlabel{Labels and references}
+\begin{referencecode}
+\section{Model}
+\label{sec:model}
+
+\begin{equation}
+    F = ma
+    \label{eq:force}
+\end{equation}
+
+See section~\ref{sec:model}.
+We use equation~\eqref{eq:force}.
+\hyperref[sec:model]{Return to the model}.
+\href{https://www.uc3m.es}{UC3M website}.
+\url{https://www.uc3m.es}
+\end{referencecode}
+
+% Keep the example's section out of the guide's numbering and contents.
+\begingroup
+\edef\savedsection{\arabic{section}}
+\edef\savedsubsection{\arabic{subsection}}
+\edef\savedsubsubsection{\arabic{subsubsection}}
+\setcounter{section}{0}
+\renewcommand{\section}[1]{\refstepcounter{section}\subsubsection*{\thesection\quad #1}}
+
+\section{Model}
+\label{sec:model-functional}
+
+\begin{equation}
+    F = ma
+    \label{eq:force-functional}
+\end{equation}
+
+See section~\ref{sec:model-functional}.
+We use equation~\eqref{eq:force-functional}.
+\hyperref[sec:model-functional]{Return to the model}.
+\href{https://www.uc3m.es}{UC3M website}.
+\url{https://www.uc3m.es}
+
+\setcounter{section}{\savedsection}
+\setcounter{subsection}{\savedsubsection}
+\setcounter{subsubsection}{\savedsubsubsection}
+\endgroup
+\partlabel{Unnumbered heading in the contents}
+\begin{referencecode}
+\tableofcontents
+% An unnumbered section included in the contents:
+\section*{Acknowledgements}
+\phantomsection
+\addcontentsline{toc}{section}{Acknowledgements}
+\end{referencecode}
+
+\begin{quote}
+\textbf{Contents}\par
+Acknowledgements\dotfill 1\par\medskip
+\textbf{Acknowledgements}
+\end{quote}
+The heading stays unnumbered while its entry appears in the contents.
+Compile twice to resolve references. Figure and table labels go after
+their captions; equation labels go inside the equation environment.
+
+\clearpage
+\packageentry{columns}{multicol -- Multiple columns}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{multicol,lipsum}
+\setlength{\columnsep}{8mm}
+\setlength{\columnseprule}{0pt}
+\end{referencecode}
+\partlabel{Balanced columns}
+\begin{referencecode}
+\begin{multicols}{2}
+    \lipsum[1][1-4]
+    \columnbreak
+    \lipsum[2][1-4]
+\end{multicols}
+\end{referencecode}
+\begingroup
+\setlength{\columnsep}{8mm}\setlength{\columnseprule}{0pt}
+
+\begin{multicols}{2}
+    \lipsum[1][1-4]
+    \columnbreak
+    \lipsum[2][1-4]
+\end{multicols}
+\par\endgroup
+Use \texttt{\string\linewidth} to size content inside a column.
+Ordinary single-column floats are not supported within \texttt{multicols}.
+\partlabel{Manual columns -- no balancing on the last page}
+\begin{referencecode}
+\begin{multicols*}{3}
+    \lipsum[1][1-2]
+    \columnbreak
+    \lipsum[2][1-2]
+    \columnbreak
+    \lipsum[3][1-2]
+\end{multicols*}
+\end{referencecode}
+\begingroup
+\setlength{\columnsep}{8mm}\setlength{\columnseprule}{0pt}
+
+\begin{multicols*}{3}
+    \lipsum[1][1-2]
+    \columnbreak
+    \lipsum[2][1-2]
+    \columnbreak
+    \lipsum[3][1-2]
+\end{multicols*}
+\par\endgroup
+
+\clearpage
+\packageentry{space}{needspace -- Page break control}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{needspace,lipsum}
+\end{referencecode}
+\partlabel{Reserve room before a heading}
+\begin{referencecode}
+\lipsum[1][1-3]
+
+\Needspace{8\baselineskip}
+\subsection{Results}
+\lipsum[2][1-4]
+\end{referencecode}
+
+\begingroup
+\renewcommand{\subsection}[1]{\subsubsection*{#1}}
+
+\lipsum[1][1-3]
+
+\Needspace{8\baselineskip}
+\subsection{Results}
+\lipsum[2][1-4]
+\par
+\endgroup
+If fewer than eight baseline spacings remain, the heading and its opening
+text start on the next page.
+\begin{tabularx}{\linewidth}{@{}p{53mm}X@{}}\toprule
+Command & Use \\\midrule
+\texttt{\string\Needspace\{3cm\}} & Break if less than 3 cm remains. \\
+\texttt{\string\needspace\{3cm\}} & Approximate reservation. \\
+\texttt{\string\Needspace*\{3cm\}} & Preserve bottom alignment with \texttt{\string\flushbottom}. \\
+\texttt{\string\newpage} & Force a page break. \\
+\texttt{\string\clearpage} & Break and place pending floats first. \\
+\bottomrule\end{tabularx}
+The requested length must include the heading and its spacing. The command
+does not measure the following block or control floating figures.

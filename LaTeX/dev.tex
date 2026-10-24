@@ -1,36 +1,16 @@
-\documentclass[11pt, a4paper]{article}
-% Define the document class and paper size
-
-%% Load necessary packages
-\input{Packages/Code/usepackages.tex}
-\input{Packages/Graphics/usepackages.tex}
-\input{Packages/Layout/usepackages.tex} % Page layout and formatting
-\input{Packages/Math/usepackages.tex}
-\input{Packages/Text/usepackages.tex}
-
-
-\fancyhf{}
-\rhead{\includegraphics[height=0.8cm]{Images/logo_header.png}} % Add the logo to the right header
-\cfoot{\vspace{10mm}\thepage} % Center the page number in the footer
-\renewcommand{\headrulewidth}{0.8pt} % Set the width of the header rule
-\renewcommand{\footrulewidth}{0.4pt} % Set the width of the footer rule
-\widowpenalty10000
-\clubpenalty10000
-
-
-% Start document
-
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+% Use the same package definitions and styles as main.tex.
+\input{Packages/Code/usepackages}
+\input{Packages/Graphics/usepackages}
+\input{Packages/Math/usepackages}
+\input{Packages/Text/usepackages}
+% Additional packages used by the reference's table examples.
+\usepackage{booktabs,tabularx,array,textcomp}
+\input{Packages/Layout/usepackages}
+\input{dev/guide-config}
 \begin{document}
-\input{dev/titlepage.tex} % Include the title page from an external file
-\newpage
-\pagestyle{fancy} % Set the page style to fancy for the rest of the document
-\tableofcontents % Generate the table of contents
-\newpage
-
-\input{dev/code/packages.tex}
-\input{dev/graphics/packages.tex}
-\input{dev/layout/packages.tex}
-\input{dev/math/packages.tex}
-\input{dev/text/packages.tex}
-
+\input{dev/titlepage}
+\input{dev/guide}
 \end{document}
