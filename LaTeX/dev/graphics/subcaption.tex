@@ -1,0 +1,39 @@
+\packageentry{subfig}{subcaption -- Side-by-side images}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{graphicx,subcaption}
+\end{referencecode}
+\partlabel{Two panels with one figure number}
+\begin{referencecode}
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.47\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]
+            {Images/image_placeholder.png}
+        \caption{Without a controller.}
+        \label{fig:uncontrolled}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.47\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]
+            {Images/image_placeholder.png}
+        \caption{With a controller.}
+        \label{fig:controlled}
+    \end{subfigure}
+    \caption{Comparison of the time responses.}
+    \label{fig:comparison}
+\end{figure}
+\end{referencecode}
+
+\begin{figure}[H]\centering
+\begin{subfigure}{0.47\linewidth}\centering
+\includegraphics[width=\linewidth]{Images/image_placeholder.png}
+\caption{Without a controller.}\label{fig:uncontrolled-functional}\end{subfigure}\hfill
+\begin{subfigure}{0.47\linewidth}\centering
+\includegraphics[width=\linewidth]{Images/image_placeholder.png}
+\caption{With a controller.}\label{fig:controlled-functional}\end{subfigure}
+\caption{Comparison of the time responses.}\label{fig:comparison-functional}\end{figure}
+Use \verb|\ref{fig:comparison}| for the complete figure and
+\verb|\subref{fig:uncontrolled}| for a panel. Replace \texttt{subfigure}
+with \texttt{minipage} for independent figure numbers.

@@ -1,0 +1,32 @@
+\packageentry{tables}{booktabs -- Tables}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{booktabs,siunitx}
+\end{referencecode}
+\partlabel{Table with aligned numbers}
+\begin{referencecode}
+\begin{table}[htbp]
+    \centering
+    \caption{Test results.}
+    \label{tab:tests}
+    \begin{tabular}{l S[table-format=2.2]}
+        \toprule
+        Test & {Time (\unit{\second})} \\
+        \midrule
+        A & 9.25 \\
+        B & 12.40 \\
+        C & 8.70 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\end{referencecode}
+
+\begin{table}[H]\centering
+\caption{Test results.}\label{tab:tests-functional}
+\begin{tabular}{l S[table-format=2.2]}
+\toprule Test & {Time (\unit{\second})} \\
+\midrule A & 9.25 \\ B & 12.40 \\ C & 8.70 \\\bottomrule
+\end{tabular}\end{table}
+\texttt{S[table-format=2.2]} (from \texttt{siunitx}) reserves two integer
+digits and two decimals. Use \texttt{tabularx} for text columns and
+\texttt{longtable} for tables spanning pages.

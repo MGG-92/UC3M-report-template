@@ -1,0 +1,30 @@
+
+\begin{nobreaks}
+    
+\packageentry{figure}{graphicx -- Images}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{graphicx}
+\end{referencecode}
+
+\partlabel{Single image}
+\begin{referencecode}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\linewidth]
+        {Images/image_placeholder.png}
+    \caption{System response to a step input.}
+    \label{fig:response}
+\end{figure}
+
+See figure~\ref{fig:response}.
+\end{referencecode}
+
+\end{nobreaks}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.4\linewidth]{Images/image_placeholder.png}
+\caption{System response to a step input.}\label{fig:response-example}
+\end{figure}
+See figure~\ref{fig:response-example}.
+\input{dev/graphics/image_sizing}

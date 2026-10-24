@@ -1,0 +1,42 @@
+\packageentry{tikz}{tikz -- Block diagrams}
+\partlabel{Template setup -- styles used by both examples}
+\begin{referencecode}
+\input{Packages/Graphics/usepackages}
+% Loads TikZ and the template styles from:
+% Packages/Graphics/package_config.tex
+\end{referencecode}
+\partlabel{Series blocks}
+\begin{referencecode}
+\begin{tikzpicture}[node distance=12mm]
+    \node[input] (r) {$R(s)$};
+    \node[block,right=of r] (g1) {$s+4$};
+    \node[block,right=of g1] (g2) {$G(s)$};
+    \node[output,right=of g2] (y) {$Y(s)$};
+    \draw[->] (r) -- (g1);
+    \draw[->] (g1) -- (g2);
+    \draw[->] (g2) -- (y);
+\end{tikzpicture}
+\end{referencecode}
+
+\begin{figure}[H]\centering
+
+\begin{tikzpicture}[node distance=12mm]
+    \node[input] (r) {$R(s)$};
+    \node[block,right=of r] (g1) {$s+4$};
+    \node[block,right=of g1] (g2) {$G(s)$};
+    \node[output,right=of g2] (y) {$Y(s)$};
+    \draw[->] (r) -- (g1);
+    \draw[->] (g1) -- (g2);
+    \draw[->] (g2) -- (y);
+\end{tikzpicture}
+
+\caption{Two blocks in series.}\label{fig:series-blocks}
+\end{figure}
+\verb|right=of g1| uses \texttt{node distance};
+\verb|below=15mm of g1| sets a local distance.
+\verb|(g1.south)| selects the lower anchor.
+The template defines \texttt{input}, \texttt{output}, \texttt{block},
+\texttt{sum}, \texttt{pickoff}, \texttt{plus} and \texttt{minus} in
+\texttt{Packages/Graphics/package\_config.tex}.
+\input{dev/graphics/feedback}
+\input{dev/graphics/coordinates_and_scaling}

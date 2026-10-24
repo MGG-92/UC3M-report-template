@@ -1,75 +1,41 @@
-\subsection{Cancel -- Cancellations}
-
-The \texttt{cancel} package is used to visually cancel terms in
-mathematical expressions.
-
-
-\subsubsection{Basic Cancellation}
-
-\begin{lstlisting}[style=latex]
+\packageentry{cancel}{cancel -- Cancellations}
+\partlabel{Preamble}
+\begin{referencecode}
+\usepackage{amsmath,cancel}
+\end{referencecode}
+\partlabel{Common factors}
+\begin{referencecode}
 \[
-\cancel{x}
+    \frac{\cancel{x}y}{\cancel{x}z}
+    = \frac{y}{z},
+    \qquad x \ne 0,\; z \ne 0
 \]
-\end{lstlisting}
+\end{referencecode}
 
 \[
-\cancel{x}
-\]
-
-
-\subsubsection{Cancelling Common Terms}
-
-It can be used to show the simplification of common terms:
-
-\begin{lstlisting}[style=latex]
-\[
-\frac{\cancel{x}y}{\cancel{x}z}
-=
-\frac{y}{z}
-\]
-\end{lstlisting}
-
-\[
-\frac{\cancel{x}y}{\cancel{x}z}
-=
-\frac{y}{z}
+    \frac{\cancel{x}y}{\cancel{x}z}
+    = \frac{y}{z},
+    \qquad x \ne 0,\; z \ne 0
 \]
 
-
-\subsubsection{Cancelling to a Value}
-
-The \verb|\cancelto| command indicates the value to which a term
-is reduced:
-
-\begin{lstlisting}[style=latex]
+\partlabel{Cancel towards a value}
+\begin{referencecode}
 \[
-a + \cancelto{0}{b-b} = a
+    a + \cancelto{0}{(b-b)} = a
 \]
-\end{lstlisting}
+\end{referencecode}
 
 \[
-a + \cancelto{0}{b-b} = a
+    a + \cancelto{0}{(b-b)} = a
 \]
 
-
-\subsubsection{Other Cancellation Styles}
-
-Different cancellation directions are also available:
-
-\begin{lstlisting}[style=latex]
+\partlabel{Stroke styles}
+\begin{referencecode}
 \[
-\cancel{x}
-\qquad
-\bcancel{x}
-\qquad
-\xcancel{x}
+    \cancel{x} \qquad \bcancel{x} \qquad \xcancel{x}
 \]
-\end{lstlisting}
+\end{referencecode}
 
 \[
-\cancel{x}
-\qquad
-\bcancel{x}
-\qquad
-\xcancel{x}
+    \cancel{x} \qquad \bcancel{x} \qquad \xcancel{x}
 \]

@@ -1,0 +1,56 @@
+\clearpage
+\packageentry{nobreaks}{nobreaks -- Keep a block together}
+This custom environment puts its contents in one indivisible vertical box.
+If the block does not fit in the space remaining on the page, LaTeX moves
+the whole block to the next page. Use it for a short explanation, a heading
+with its paragraph, or a group of equations that should stay together.
+
+\partlabel{Definition}
+Already defined in \texttt{Packages/Layout/usepackages.tex}, which is
+loaded by the template. In another project, add this definition once in
+the preamble. No additional package is required.
+\begin{referencecode}
+\newenvironment{nobreaks}{\vbox\bgroup}{\egroup}
+\end{referencecode}
+
+\partlabel{Usage}
+Start and end the environment between paragraphs, with a blank line before
+and after the block. The example uses \texttt{lipsum} for placeholder text
+and \texttt{amsmath} for the equation.
+\begin{referencecode}
+\begin{nobreaks}
+    \textbf{Local model}
+
+    \lipsum[1][1-2]
+    \[
+        F = ma, \qquad a = \frac{F}{m}
+    \]
+    \lipsum[2][1]
+\end{nobreaks}
+\end{referencecode}
+
+\begin{nobreaks}
+    \textbf{Local model}
+
+    \lipsum[1][1-2]
+    \[
+        F = ma, \qquad a = \frac{F}{m}
+    \]
+    \lipsum[2][1]
+\end{nobreaks}
+
+\partlabel{When replacing needspace}
+\texttt{\string\Needspace\{length\}} reserves a length before the following
+content, which may still split if it exceeds that reservation.
+\texttt{nobreaks} encloses the actual content and prevents all page breaks
+inside it; there is no length to estimate.
+
+\begin{itemize}
+    \item The entire block must fit on one page. A taller block cannot
+    split or shrink automatically and can run beyond the page boundary.
+    \item Keep ordinary floating \texttt{figure} and \texttt{table}
+    environments outside the box. Inside it, use non-floating content
+    such as \texttt{\string\includegraphics} or \texttt{tabular}.
+    \item Moving the block may leave unused space at the bottom of the
+    preceding page.
+\end{itemize}
