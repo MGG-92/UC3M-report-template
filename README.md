@@ -30,3 +30,11 @@ styles from the template. Table examples additionally use `booktabs` and `tabula
 formatting helpers. It is optional as a separate file: those settings could be
 placed directly in `dev.tex`. It does not redefine the template's shared styles.
 The coursework template keeps its existing settings. Use `lipsum` for placeholder prose.
+
+The template also provides the Homework-3 row-height presets:
+`\begin{array}[c]{columns}[L]` (or `[XL]`) and `\begin{cases}[L]`
+(or `[XL]`). Omitting the preset preserves the ordinary syntax.
+Graphics loads `array` and defines the struts; Math defines the extended
+`cases`, so load Graphics before Math, as in `main.tex` and `dev.tex`.
+The Layout group defines `\spacedpar` for selected paragraph breaks.
+These helpers and their rendered examples are documented in the reference.

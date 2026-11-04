@@ -1,3 +1,4 @@
+\Needspace{48\baselineskip}
 \packageentry{units}{siunitx -- Numbers and units}
 \partlabel{Preamble}
 \begin{referencecode}
@@ -41,3 +42,22 @@ Set \texttt{output-decimal-marker=\{,\}} for a decimal comma and
 \texttt{per-mode=reciprocal} for negative unit powers.
 \texttt{\string\qty} and \texttt{\string\unit} require \texttt{siunitx} v3;
 the older v2 equivalents are \texttt{\string\SI} and \texttt{\string\si}.
+
+\partlabel{Signed angles, percentages and time}
+\begin{referencecode}
+\[
+    \phi_{\mathrm{dep}} = \qty{-116.5651}{\degree}
+    \qquad \Delta K = \qty{330.3915}{\percent}
+    \qquad t_s = \qty{4.2}{\second}
+\]
+\end{referencecode}
+
+\[
+    \phi_{\mathrm{dep}} = \qty{-116.5651}{\degree}
+    \qquad \Delta K = \qty{330.3915}{\percent}
+    \qquad t_s = \qty{4.2}{\second}
+\]
+
+Use \verb|\qty{value}{\degree}| for decimal angles in calculations,
+and \verb|\qty{value}{\percent}| for percentages. Supply the sign
+in the numeric argument; \texttt{siunitx} formats it with the value.
