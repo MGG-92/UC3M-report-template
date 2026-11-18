@@ -61,3 +61,28 @@ the older v2 equivalents are \texttt{\string\SI} and \texttt{\string\si}.
 Use \verb|\qty{value}{\degree}| for decimal angles in calculations,
 and \verb|\qty{value}{\percent}| for percentages. Supply the sign
 in the numeric argument; \texttt{siunitx} formats it with the value.
+
+\Needspace{20\baselineskip}
+\partlabel{Control-system margins and angular frequencies}
+\begin{referencecode}
+\[
+    \PM = \qty{21.3886}{\degree}
+    \qquad \GM_{\mathrm{dB}} = \qty{6.0206}{\decibel}
+\]
+\[
+    \omega_{gc} = \qty{8.3330e-1}{\radian\per\second}
+\]
+\end{referencecode}
+
+\[
+    \PM = \qty{21.3886}{\degree}
+    \qquad \GM_{\mathrm{dB}} = \qty{6.0206}{\decibel}
+\]
+\[
+    \omega_{gc} = \qty{8.3330e-1}{\radian\per\second}
+\]
+Use \verb|\decibel| for logarithmic gain values and
+\verb|\radian\per\second| for angular frequencies. The numeric
+argument accepts scientific notation such as \texttt{8.3330e-1}.
+The \verb|\PM| and \verb|\GM| helpers are defined by the template;
+see the equations section on page~\pageref{equations}.

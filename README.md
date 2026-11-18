@@ -38,3 +38,9 @@ Graphics loads `array` and defines the struts; Math defines the extended
 `cases`, so load Graphics before Math, as in `main.tex` and `dev.tex`.
 The Layout group defines `\spacedpar` for selected paragraph breaks.
 These helpers and their rendered examples are documented in the reference.
+
+The Homework-4 additions provide `\PM` and `\GM` as upright phase- and
+gain-margin labels in `Packages/Math/package_config.tex`. They are available
+in math mode after loading the Math group; do not redefine them in `main.tex`.
+The `amsmath` entry documents their use, and the `siunitx` entry includes
+decibels, angular frequencies in rad/s, and scientific notation.
