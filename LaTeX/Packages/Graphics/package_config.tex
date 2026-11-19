@@ -1,3 +1,26 @@
+% ================== Array config ================== %
+% Compatibility with LaTeX kernels predating the public IfBlankTF helper.
+\ExplSyntaxOn
+\cs_if_exist:NF \IfBlankTF
+  { \cs_new_eq:NN \IfBlankTF \tl_if_blank:nTF }
+\ExplSyntaxOff
+
+% Row heights
+\newcommand{\rowL}{\vphantom{\dfrac{M}{M}}}
+\newcommand{\rowXL}{\vphantom{\dfrac{M^M}{M_M}}}
+
+% Save original array environment
+\let\OriginalArray\array
+
+% Extend only the array entry command; preserve endarray for tabular/siunitx.
+\RenewDocumentCommand{\array}{O{c} m O{}}{%
+    \IfBlankTF{#3}{%
+        \OriginalArray[#1]{#2}%
+    }{%
+        \OriginalArray[#1]{>{\csname row#3\endcsname}#2}%
+    }%
+}
+
 % Block diagrams package configuration (Tikz)
 \usetikzlibrary{angles, arrows, calc, decorations.markings, positioning, quotes, shapes}
 

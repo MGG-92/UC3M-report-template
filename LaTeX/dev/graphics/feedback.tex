@@ -1,3 +1,4 @@
+\Needspace{34\baselineskip}
 \subsubsection*{Feedback loop}
 \phantomsection\label{feedback}
 Uses the template styles listed on page~\pageref{tikz}.
@@ -39,3 +40,52 @@ Uses the template styles listed on page~\pageref{tikz}.
 
 \caption{Negative-feedback block diagram.}\label{fig:feedback-loop}
 \end{figure}
+
+
+\begin{nobreaks}
+\subsubsection*{Unity feedback with template signs and a coordinate offset}
+No feedback block is needed for unity feedback. The \texttt{calc}
+library offsets the midpoint by the template length \verb|\dnd|.
+The \texttt{plus} and \texttt{minus} node styles supply their own signs.
+\begin{referencecode}
+\begin{center}
+\begin{tikzpicture}[node distance=9mm]
+    \node[input] (r) {$R(s)$};
+    \node[sum,right=of r] (s) {};
+    \node[block,right=of s] (d) {$D(s)$};
+    \node[block,right=of d] (g) {$G(s)$};
+    \node[pickoff,right=of g] (p) {};
+    \node[output,right=of p] (y) {$Y(s)$};
+    \coordinate (mid) at ($(s)!0.5!(p)$);
+    \coordinate (fb) at ($(mid)+(0,-\dnd)$);
+    \draw[->] (r) -- node[plus,above left] {} (s);
+    \draw[->] (s) -- (d);
+    \draw[->] (d) -- (g);
+    \draw (g) -- (p);
+    \draw[->] (p) -- (y);
+    \draw (p) |- (fb);
+    \draw[->] (fb) -| node[minus,below left] {} (s.south);
+\end{tikzpicture}
+\end{center}
+\end{referencecode}
+
+\begin{center}
+\begin{tikzpicture}[node distance=9mm]
+    \node[input] (r) {$R(s)$};
+    \node[sum,right=of r] (s) {};
+    \node[block,right=of s] (d) {$D(s)$};
+    \node[block,right=of d] (g) {$G(s)$};
+    \node[pickoff,right=of g] (p) {};
+    \node[output,right=of p] (y) {$Y(s)$};
+    \coordinate (mid) at ($(s)!0.5!(p)$);
+    \coordinate (fb) at ($(mid)+(0,-\dnd)$);
+    \draw[->] (r) -- node[plus,above left] {} (s);
+    \draw[->] (s) -- (d);
+    \draw[->] (d) -- (g);
+    \draw (g) -- (p);
+    \draw[->] (p) -- (y);
+    \draw (p) |- (fb);
+    \draw[->] (fb) -| node[minus,below left] {} (s.south);
+\end{tikzpicture}
+\end{center}
+\end{nobreaks}

@@ -1,0 +1,23 @@
+% Upright control-system margin labels (use in math mode).
+\newcommand{\PM}{\mathrm{PM}}
+\newcommand{\GM}{\mathrm{GM}}
+
+% ================== Cases environment config ================== %
+% amsmath is loaded above; array and rowL/rowXL come from Graphics.
+
+% Row heights already defined
+% \newcommand{\rowL}{\vphantom{\dfrac{M}{M}}}
+% \newcommand{\rowXL}{\vphantom{\dfrac{M^M}{M_M}}}
+
+% Redefine cases with optional row height
+\RenewDocumentEnvironment{cases}{O{}}{%
+    \left\{
+    \renewcommand{\arraystretch}{1.2}%
+    \IfBlankTF{#1}{%
+        \begin{array}{@{}l@{\quad}l@{}}
+    }{%
+        \begin{array}{@{}>{\csname row#1\endcsname}l@{\quad}l@{}}
+    }%
+}{%
+    \end{array}\right.%
+}

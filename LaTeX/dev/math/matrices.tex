@@ -64,3 +64,52 @@
 
 Use \texttt{\string\text\{...\}} for words and commands such as
 \texttt{\string\sin} or \texttt{\string\log} for operators.
+
+\partlabel{Systems with taller rows}
+The template extends \texttt{cases} with optional \texttt{[L]} and
+\texttt{[XL]} row struts. Its definition is in
+\path{Packages/Math/package_config.tex} and uses \texttt{array}
+and the presets loaded by the Graphics package group.
+\begin{referencecode}
+\[
+\begin{cases}[L]
+    \zeta\omega_n = \dfrac{4-a}{2}, \\
+    \omega_n^2 = \dfrac{K}{a}.
+\end{cases}
+\]
+\end{referencecode}
+
+\[
+\begin{cases}[L]
+    \zeta\omega_n = \dfrac{4-a}{2}, \\
+    \omega_n^2 = \dfrac{K}{a}.
+\end{cases}
+\]
+
+Omit the option for ordinary \texttt{cases}. Both forms use a local
+\texttt{\string\arraystretch} of 1.2. The optional presets are
+template extensions, not standard \texttt{amsmath} syntax.
+\partlabel{A brace around equations aligned at the equals sign}
+Unlike the left-aligned columns in \texttt{cases}, \texttt{aligned}
+lets the alignment point sit at each equals sign. Place it inside
+display math and close the left brace with the invisible delimiter
+\verb|\right.|.
+\begin{referencecode}
+\[
+\left\{
+\begin{aligned}
+    a^4 - 24a^2 + 15 + 2K &= 0 \\
+    8a^3 - (32+K)a &= 0
+\end{aligned}
+\right.
+\]
+\end{referencecode}
+
+\[
+\left\{
+\begin{aligned}
+    a^4 - 24a^2 + 15 + 2K &= 0 \\
+    8a^3 - (32+K)a &= 0
+\end{aligned}
+\right.
+\]

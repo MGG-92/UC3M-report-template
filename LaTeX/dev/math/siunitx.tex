@@ -1,3 +1,4 @@
+\Needspace{48\baselineskip}
 \packageentry{units}{siunitx -- Numbers and units}
 \partlabel{Preamble}
 \begin{referencecode}
@@ -41,3 +42,47 @@ Set \texttt{output-decimal-marker=\{,\}} for a decimal comma and
 \texttt{per-mode=reciprocal} for negative unit powers.
 \texttt{\string\qty} and \texttt{\string\unit} require \texttt{siunitx} v3;
 the older v2 equivalents are \texttt{\string\SI} and \texttt{\string\si}.
+
+\partlabel{Signed angles, percentages and time}
+\begin{referencecode}
+\[
+    \phi_{\mathrm{dep}} = \qty{-116.5651}{\degree}
+    \qquad \Delta K = \qty{330.3915}{\percent}
+    \qquad t_s = \qty{4.2}{\second}
+\]
+\end{referencecode}
+
+\[
+    \phi_{\mathrm{dep}} = \qty{-116.5651}{\degree}
+    \qquad \Delta K = \qty{330.3915}{\percent}
+    \qquad t_s = \qty{4.2}{\second}
+\]
+
+Use \verb|\qty{value}{\degree}| for decimal angles in calculations,
+and \verb|\qty{value}{\percent}| for percentages. Supply the sign
+in the numeric argument; \texttt{siunitx} formats it with the value.
+
+\Needspace{20\baselineskip}
+\partlabel{Control-system margins and angular frequencies}
+\begin{referencecode}
+\[
+    \PM = \qty{21.3886}{\degree}
+    \qquad \GM_{\mathrm{dB}} = \qty{6.0206}{\decibel}
+\]
+\[
+    \omega_{gc} = \qty{8.3330e-1}{\radian\per\second}
+\]
+\end{referencecode}
+
+\[
+    \PM = \qty{21.3886}{\degree}
+    \qquad \GM_{\mathrm{dB}} = \qty{6.0206}{\decibel}
+\]
+\[
+    \omega_{gc} = \qty{8.3330e-1}{\radian\per\second}
+\]
+Use \verb|\decibel| for logarithmic gain values and
+\verb|\radian\per\second| for angular frequencies. The numeric
+argument accepts scientific notation such as \texttt{8.3330e-1}.
+The \verb|\PM| and \verb|\GM| helpers are defined by the template;
+see the equations section on page~\pageref{equations}.

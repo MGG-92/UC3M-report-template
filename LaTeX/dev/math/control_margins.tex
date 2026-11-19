@@ -1,0 +1,44 @@
+\par
+\Needspace{35\baselineskip}
+\subsubsection*{Upright labels for phase and gain margins}
+The template defines \verb|\PM| and \verb|\GM| in
+\path{Packages/Math/package_config.tex}, loaded by
+\path{Packages/Math/usepackages.tex}. They are template helpers,
+not commands supplied by \texttt{amsmath}. Use them in math mode
+to keep multi-letter labels upright rather than typesetting them
+as products of italic variables.
+
+\partlabel{Preamble -- definitions already provided by the template}
+\begin{referencecode}
+\newcommand{\PM}{\mathrm{PM}}
+\newcommand{\GM}{\mathrm{GM}}
+\end{referencecode}
+When using the template, do not repeat these definitions in
+\texttt{main.tex}. In a standalone document, add them to the preamble.
+
+\partlabel{Margins, subscripts and an infinite gain margin}
+\begin{referencecode}
+\[
+    \PM = 180^\circ + \angle L(j\omega_{gc})
+    \qquad \GM = \frac{1}{|L(j\omega_{pc})|}
+\]
+\[
+    \GM_{\mathrm{dB}} = 20\log_{10}(\GM)
+    \qquad \GM = \infty
+\]
+\end{referencecode}
+
+\[
+    \PM = 180^\circ + \angle L(j\omega_{gc})
+    \qquad \GM = \frac{1}{|L(j\omega_{pc})|}
+\]
+\[
+    \GM_{\mathrm{dB}} = 20\log_{10}(\GM)
+    \qquad \GM = \infty
+\]
+Here \(\omega_{gc}\) and \(\omega_{pc}\) denote gain- and
+phase-crossover frequencies; the infinite margin illustrates the
+case with no phase crossover. The gain margin \(\GM\) is a ratio;
+\(\GM_{\mathrm{dB}}\) is its value in decibels. For numerical
+angles and units, see \texttt{siunitx} on page~\pageref{units}.
+\par

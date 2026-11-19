@@ -1,0 +1,79 @@
+\packageentry{array}{array -- Mathematical arrays and row spacing}
+\partlabel{Template setup}
+\begin{referencecode}
+\input{Packages/Graphics/usepackages}
+\end{referencecode}
+The template loads \texttt{array} and defines \texttt{\string\rowL}
+and \texttt{\string\rowXL} in
+\path{Packages/Graphics/package_config.tex}. The package supplies
+programmable column declarations such as \verb|>{...}c|;
+\texttt{array} itself is a mathematical environment.
+\partlabel{Routh array with automatic row struts}
+The template extends the syntax to
+\verb|\begin{array}[c]{columns}[L]| or \texttt{[XL]}.
+The first optional argument sets vertical alignment (\texttt{t},
+\texttt{c} or \texttt{b}); the option after the column specification
+selects a row-height preset. Omit the final option for ordinary syntax.
+\begin{referencecode}
+\[
+\begin{array}{rcc}[XL]
+    s^3: & 1 & 2 \\
+    s^2: & 3 & K \\
+    s^1: & \dfrac{6-K}{3} & 0 \\
+    s^0: & K & 0
+\end{array}
+\]
+\end{referencecode}
+
+\[
+\begin{array}{rcc}[XL]
+    s^3: & 1 & 2 \\
+    s^2: & 3 & K \\
+    s^1: & \dfrac{6-K}{3} & 0 \\
+    s^0: & K & 0
+\end{array}
+\]
+
+The presets are already defined in the template as follows:
+\begin{referencecode}
+\newcommand{\rowL}{\vphantom{\dfrac{M}{M}}}
+\newcommand{\rowXL}{\vphantom{\dfrac{M^M}{M_M}}}
+\end{referencecode}
+These invisible struts reserve
+height and depth without adding width. They set a minimum row size;
+taller entries can still enlarge a row. These presets are template
+extensions, not options provided by the \texttt{array} package.
+
+\begin{nobreaks}
+\partlabel{Local spacing without the template extension}
+Use a column declaration to insert a strut automatically, or add a
+custom strut explicitly to each row. This example uses the latter,
+as in Homework-3, and adds \texttt{3pt} after the first row.
+\begin{referencecode}
+\[
+\begingroup
+\newcommand{\rowstrut}{\vphantom{\dfrac{K^2}{K+1}}}
+\begin{array}{rcc}
+    s^2: & 1 & K \rowstrut \\[3pt]
+    s^1: & \dfrac{K+2}{3} & 0 \rowstrut
+\end{array}
+\endgroup
+\]
+\end{referencecode}
+
+\[
+\begingroup
+\newcommand{\rowstrut}{\vphantom{\dfrac{K^2}{K+1}}}
+\begin{array}{rcc}
+    s^2: & 1 & K \rowstrut \\[3pt]
+    s^1: & \dfrac{K+2}{3} & 0 \rowstrut
+\end{array}
+\endgroup
+\]
+
+Equivalently, \verb|\begin{array}{>{\rowXL}rcc}| applies
+the existing preset to every row through the first column.
+Use \verb|\renewcommand{\arraystretch}{1.2}| within a group to
+scale the standard row strut locally. It does not scale the fractions
+or guarantee extra clearance around arbitrarily tall entries.
+\end{nobreaks}
