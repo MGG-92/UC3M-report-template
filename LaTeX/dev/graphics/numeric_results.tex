@@ -1,0 +1,38 @@
+\Needspace{27\baselineskip}
+\partlabel{Signed values and unavailable results}
+Reserve space for a minus sign with \texttt{table-format=-3.2}.
+Protect text headers with braces so \texttt{siunitx} does not parse them
+as numbers. Use a text placeholder when a result is not defined.
+\begin{referencecode}
+\begin{table}[htbp]
+    \centering
+    \caption{Measured changes.}
+    \begin{tabular}{l S[table-format=-3.2]}
+        \toprule
+        Test & {Change (\unit{\newton})} \\
+        \midrule
+        A & -12.50 \\
+        B & 105.25 \\
+        C & {---} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\end{referencecode}
+
+\begin{table}[H]
+    \centering
+    \caption{Measured changes.}
+    \begin{tabular}{l S[table-format=-3.2]}
+        \toprule
+        Test & {Change (\unit{\newton})} \\
+        \midrule
+        A & -12.50 \\
+        B & 105.25 \\
+        C & {---} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+The placeholder is text, not a zero-valued measurement. The format reserves
+column width; it does not round the underlying data. To round only the
+display, use \texttt{round-mode=places,round-precision=2} on the
+\texttt{S} column, and retain full precision in the calculation program.
