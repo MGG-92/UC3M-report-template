@@ -20,6 +20,19 @@ The Homework-4 additions provide `\PM` and `\GM` as upright phase- and gain-marg
 
 `MATLAB-scripts/` includes `export2latex.m` for individual values and `table2latex.m` for MATLAB tables. Run your calculation script from that folder, or add it to the MATLAB path with `addpath`. Both functions generate `.tex` files that you include in the report with `\input`; they are MATLAB helpers, not LaTeX packages, so their usage is documented here rather than in the Package Reference.
 
+### Optional settings and named arguments
+
+Both functions use MATLAB `arguments` blocks. Supply only the options you need, in any order, using `name=value`. You can also provide a scalar struct through `settings`, or combine the two styles:
+
+```matlab
+settings = struct('caption', 'Measured forces.', 'decimals', 2);
+table2latex(T, settings=settings, filename="results_table.tex", decimals=3);
+```
+
+The priority is **defaults < `settings` < explicit named options**. The example uses three decimal places, even though `settings.decimals` is two. This priority does not depend on where `settings` appears in the call. Omitted fields keep their defaults; `settings` itself is optional. Use the option names listed below as struct fields. Unsupported settings and invalid values are rejected, rather than silently ignored.
+
+The `name=value` examples require MATLAB R2021a or later. Comma-separated name-value pairs also work, for example `table2latex(T, 'filename', 'results_table.tex', 'decimals', 3)`. See the [MATLAB name-value documentation](https://www.mathworks.com/help/matlab/matlab_prog/validate-name-value-arguments.html).
+
 ### Keep reported values up to date with `export2latex`
 
 This is particularly useful if you discover a mistake in one part of a lab:
@@ -37,19 +50,24 @@ scriptDir = fileparts(mfilename('fullpath'));
 projectDir = fileparts(scriptDir);
 valuesFile = fullfile(projectDir, 'LaTeX', 'results.tex');
 
-% Reset the generated file once at the start of each run.
-export2latex(valuesFile);
-
 % Replace these example calculations with your own.
 mass = 2.5;
 acceleration = 9.81;
 force = mass * acceleration;
 massFlow = 0.25;
 
-export2latex(valuesFile, 'Force', force, 'MassFlow', massFlow);
+values = struct('Force', force, 'MassFlow', massFlow);
+export2latex(values, filename=valuesFile, reset=true);
 ```
 
-Load the generated commands once, after loading the template's packages and before their first use. When compiling from `LaTeX/`:
+The first argument contains the **data** to export; `settings` contains only the **configuration**. For example, you can share settings between calls and override only the precision:
+
+```matlab
+settings = struct('filename', valuesFile, 'precision', 12);
+export2latex(values, settings=settings, precision=17, reset=true);
+```
+
+Load the generated commands once, after the template's packages and before their first use. When compiling from `LaTeX/`:
 
 ```latex
 \input{results}
@@ -58,15 +76,18 @@ The calculated force is \MATForce~\unit{\newton}.
 The mass flow is \MATMassFlow~\unit{\kilogram\per\second}.
 ```
 
-The generated commands are `\MAT` followed by the supplied name, preserving its case: `'Force'` becomes `\MATForce`. Each command already contains `\num{...}`, so use it directly and add units with `\unit`, as above; do not put it inside another `\num` or the numeric argument of `\qty`. The template loads the required `siunitx` package through its Math group.
+The generated commands are `\MAT` followed by the data field name, preserving its case: `Force` becomes `\MATForce`. Each command already contains `\num{...}`, so use it directly and add units with `\unit`; do not put it inside another `\num` or the numeric argument of `\qty`. The template loads `siunitx` through its Math group.
 
-Usage and limits:
+| Option      | Default         | Meaning                                                                        |
+| ----------- | --------------- | ------------------------------------------------------------------------------ |
+| `filename`  | `"results.tex"` | Destination file; the folder must already exist.                               |
+| `precision` | `12`            | Significant digits in the exported representation; integer from 1 to 17.       |
+| `reset`     | `false`         | With data, clear old definitions before writing when `true`; otherwise append. |
+| `settings`  | `struct()`      | Optional configuration fields, overridden by explicit named options.           |
 
-- `export2latex(filename)` clears the file. Call it **once per script run**, before exporting any values, rather than before every export call.
-- `export2latex(filename, 'Name', value, ...)` appends one or more values. Reusing a name produces a warning and a LaTeX redefinition; the last value takes effect. Resetting once per run avoids accumulating old definitions.
-- Names may contain letters only: no digits, spaces, or underscores.
-- Values must be finite, real numeric scalars. Arrays, `NaN`, and `Inf` are not accepted. Output uses 12 significant digits; MATLAB calculations retain their original precision.
-- The destination folder must already exist. Paths are resolved by MATLAB; the example uses `fullfile` to avoid depending on the working directory.
+Data fields may contain letters only: no digits, spaces, or underscores. Values must be finite, real numeric scalars; arrays, `NaN`, and `Inf` are not accepted. Precision affects the exported text, not the MATLAB calculations.
+
+Use `reset=true` for the first export of each script run. Subsequent calls can append more values with the default `reset=false`. Reusing a data field produces a warning and a LaTeX redefinition; its last value takes effect. To clear a file without exporting data, omit the data struct: `export2latex(filename=valuesFile)`. `export2latex()` clears `results.tex`.
 
 ### Export MATLAB tables with `table2latex`
 
@@ -78,9 +99,21 @@ tableFile = fullfile(projectDir, 'LaTeX', 'results_table.tex');
 T = table(["A"; "B"], [24.525; 19.620], ...
     'VariableNames', {'Test', 'ForceN'});
 
-table2latex(T, tableFile, 'tab:measurements', 'Measured forces.', ...
-    {'Test', 'Force (\unit{\newton})'}, 3);
+table2latex(T, filename=tableFile, caption="Measured forces.", ...
+    label="tab:measurements", decimals=3, ...
+    headers={'Test', 'Force (\unit{\newton})'});
 ```
+
+Only the MATLAB table `T` is required. For example, `table2latex(T, decimals=3)` changes only the number of decimal places. The settings struct can supply any of the options in the following table.
+
+| Option     | Default               | Meaning                                                                          |
+| ---------- | --------------------- | -------------------------------------------------------------------------------- |
+| `filename` | `"table.tex"`         | Destination file; `.tex` is added if missing.                                    |
+| `label`    | Derived from filename | For example, `tab:table` for `table.tex`; an empty label also uses this default. |
+| `caption`  | `"Results."`          | Table caption in LaTeX.                                                          |
+| `headers`  | Table variable names  | One text header per variable; default headers escape underscores.                |
+| `decimals` | `4`                   | Decimal places in the output; nonnegative integer.                               |
+| `settings` | `struct()`            | Optional configuration fields, overridden by explicit named options.             |
 
 Include the complete generated table where it belongs in the report:
 
@@ -89,11 +122,21 @@ Include the complete generated table where it belongs in the report:
 See Table~\ref{tab:measurements}.
 ```
 
-The full call is
-`table2latex(T, filename, label, caption, headers, decimals)`.
+Numeric columns use `siunitx`'s `S` alignment; text columns and optional MATLAB row names are supported. Numeric variables must contain one value per row. `NaN` is shown as a dash, and infinities as infinity symbols. Missing output folders are created, and each call overwrites the table. Rerunning MATLAB and recompiling LaTeX therefore updates the report's table.
 
-Only `T` is required. Defaults are `table.tex`, a label derived from the filename (`tab:table` for `table.tex`), `Results.`, the table variable names as headers, and four decimal places. Use `[]` to keep a default when supplying a later argument, for example `table2latex(T, tableFile, [], [], [], 3)`.
+The generated table requires `booktabs`, `siunitx`, and `float`, all supplied by the template's Graphics and Math groups. With another template, load those packages yourself. Custom headers, captions, and text cells are treated as LaTeX: escape special characters where needed. Supply explicit headers for mathematical labels.
 
-Numeric columns use `siunitx`'s `S` alignment; text columns and optional MATLAB row names are supported. Numeric variables must contain one value per row. `NaN` is shown as a dash, and infinities as signed infinity symbols. The function creates missing destination folders and overwrites the table on each call, so rerunning MATLAB and recompiling LaTeX also updates the table.
+### Updating older calls
 
-The generated table requires `booktabs`, `siunitx`, and `float`, all supplied by the template's Graphics and Math groups. With another template, load those packages yourself. Custom headers, captions, and text cells are treated as LaTeX: escape special characters where needed. Default variable-name headers escape underscores; supply explicit headers for mathematical labels.
+The former positional optional arguments have been replaced by named options:
+
+```matlab
+% Old: table2latex(T, tableFile, [], [], [], 3)
+table2latex(T, filename=tableFile, decimals=3);
+
+% Old: export2latex(valuesFile, 'Force', force, 'MassFlow', massFlow)
+export2latex(struct('Force', force, 'MassFlow', massFlow), filename=valuesFile);
+
+% Old: export2latex(valuesFile) to clear the output
+export2latex(filename=valuesFile);
+```

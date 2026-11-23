@@ -94,3 +94,5 @@ generated from `LaTeX/dev.tex`.
 Keep agent maintenance instructions here. The README is for users: describe the
 template and reference and link here for the maintenance workflow. Avoid keeping
 duplicate procedural instructions in both files.
+
+Write each README prose paragraph on a single physical line. Do not insert manual line breaks to wrap sentences or paragraphs to a fixed column width. Keep blank lines between paragraphs and preserve the intentional structure of code blocks, lists, and Markdown tables.

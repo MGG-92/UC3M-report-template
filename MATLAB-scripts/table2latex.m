@@ -1,70 +1,53 @@
-
-function table2latex(T, filename, label, caption, headers, decimals)
-% TABLE2LATEX Export a MATLAB table with professional LaTeX formatting.
-%
-% Usage:
+function table2latex(T, options)
+% TABLE2LATEX Export a MATLAB table using optional named settings.
 %   table2latex(T)
-%   table2latex(T, filename)
-%   table2latex(T, filename, label)
-%   table2latex(T, filename, label, caption)
-%   table2latex(T, filename, label, caption, headers)
-%   table2latex(T, filename, label, caption, headers, decimals)
-%
-% Requirements: booktabs, siunitx, float.
+%   table2latex(T, filename="results.tex", decimals=3)
+%   table2latex(T, settings=struct('caption','Results.','decimals',3))
+%   table2latex(T, settings=s, decimals=5)
+% Explicit options override settings; omitted fields use defaults.
+% Options: filename, label, caption, headers, decimals, settings.
+% Requirements: booktabs, siunitx, float. See README for examples.
 
-%% Default parameters
-if nargin < 2 || isempty(filename)
-    filename = 'table.tex';
+arguments
+    T table
+    options.settings (1,1) struct = struct()
+    options.filename
+    options.label
+    options.caption
+    options.headers
+    options.decimals
 end
 
-filename = char(filename);
-
-if ~endsWith(filename, '.tex')
-    filename = [filename '.tex'];
+% Merge first, then validate so settings fields receive the same checks.
+combined = options.settings;
+names = fieldnames(rmfield(options,'settings'));
+for k = 1:numel(names)
+    combined.(names{k}) = options.(names{k});
 end
-
-if nargin < 3 || isempty(label)
-    [~, name] = fileparts(filename);
+args = namedargs2cell(combined);
+config = validate_options(args{:});
+filename = char(config.filename);
+if ~endsWith(filename,'.tex'), filename = [filename '.tex']; end
+label = char(config.label);
+if isempty(label)
+    [~,name] = fileparts(filename);
     label = ['tab:' name];
 end
-
-if nargin < 4 || isempty(caption)
-    caption = 'Results.';
+caption = char(config.caption);
+decimals = config.decimals;
+if isempty(config.headers)
+    headers = cellfun(@(s) strrep(s,'_','\_'), ...
+        T.Properties.VariableNames,'UniformOutput',false);
+else
+    mustBeText(config.headers);
+    headers = cellstr(config.headers);
 end
-
-if nargin < 5 || isempty(headers)
-    headers = cellfun(@(s) strrep(s, '_', '\_'), ...
-        T.Properties.VariableNames, 'UniformOutput', false);
+if ~isvector(headers) || numel(headers)~=width(T)
+    error('table2latex:Headers','Provide one text header per table variable.');
 end
-
-if nargin < 6 || isempty(decimals)
-    decimals = 4;
-end
-
-%% Input validation
-if ~istable(T)
-    error('Input must be a MATLAB table.');
-end
-
-filename = char(filename);
-label = char(label);
-caption = char(caption);
-headers = cellstr(headers);
-
-if length(headers) ~= width(T)
-    error('Number of headers must match the number of columns.');
-end
-
-if ~endsWith(filename, '.tex')
-    filename = [filename '.tex'];
-end
-
-% Create destination directory if necessary
+headers = reshape(headers,1,[]);
 output_dir = fileparts(filename);
-
-if ~isempty(output_dir) && ~isfolder(output_dir)
-    mkdir(output_dir);
-end
+if ~isempty(output_dir) && ~isfolder(output_dir), mkdir(output_dir); end
 
 %% Column specifications
 n_col = width(T);
@@ -226,4 +209,15 @@ fclose(fileID);
 
 fprintf('LaTeX table saved to: %s\n', filename);
 
+end
+
+function config = validate_options(config)
+arguments
+    config.filename (1,1) string {mustBeNonzeroLengthText} = "table.tex"
+    config.label (1,1) string = ""
+    config.caption (1,1) string = "Results."
+    config.headers = []
+    config.decimals (1,1) double {mustBeReal,mustBeFinite, ...
+        mustBeInteger,mustBeNonnegative} = 4
+end
 end
