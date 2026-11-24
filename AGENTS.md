@@ -5,7 +5,7 @@
 These instructions apply throughout this repository. When asked to update,
 extend, refresh, or maintain the package reference (in any language or wording),
 follow the workflow below. The target is the root `Package Reference.pdf`,
-generated from `LaTeX/dev.tex`.
+generated from `docs/reference/main.tex`.
 
 ## Inspect before editing
 
@@ -24,19 +24,19 @@ generated from `LaTeX/dev.tex`.
 
 ## Source organization
 
-- `LaTeX/dev.tex` is the reference entry point. `LaTeX/dev/guide.tex` includes
+- `docs/reference/main.tex` is the reference entry point. `docs/reference/guide.tex` includes
   the package groups.
-- Topics live in `LaTeX/dev/<class>/`. Each class's `packages.tex` contains only
+- Topics live in `docs/reference/topics/<class>/`. Each class's `packages.tex` contains only
   its group heading and ordered `\input` statements. Keep packages alphabetical
   within each class and preserve the existing group order.
 - Edit the existing topic file when extending a package. For a longer subsection,
   use a separate file included from that topic, following the existing pattern.
   Change `packages.tex` only when adding or reordering package entries.
 - Actual package loading and reusable template definitions belong in
-  `LaTeX/Packages/<Class>/usepackages.tex` and `package_config.tex`.
-  `dev.tex` and `main.tex` share these definitions. Clearly distinguish template
+  `template/styles/<class>/packages.tex` and `config.tex`.
+  `uc3m-report.sty` loads these modules for both documents. Clearly distinguish template
   helpers from commands provided by a package, and explain their prerequisites.
-- `LaTeX/dev/guide-config.tex` holds reference-only presentation settings and
+- `docs/reference/guide-config.tex` holds reference-only presentation settings and
   formatting helpers. Do not put shared template definitions there or duplicate
   shared listing and TikZ styles in the reference.
 - Preserve load dependencies: Graphics defines `array` and row-height helpers;
@@ -51,7 +51,7 @@ generated from `LaTeX/dev.tex`.
   Keep both versions synchronized. Package-loading instructions and preamble
   definitions do not require a separate rendered example.
 - Use the actual shared `matlab` / `latex` listing styles and template TikZ
-  styles. Table examples additionally load `booktabs` and `tabularx` in `dev.tex`.
+  styles. Graphics supplies `booktabs`; the reference additionally loads `tabularx`.
 - Prefer short, representative examples. Explain how to load and use a new
   helper, including whether its definition is already supplied by the template.
 - Keep code readable within the margins and examples close to their output.
@@ -62,12 +62,10 @@ generated from `LaTeX/dev.tex`.
 
 ## Build and verify
 
-1. Compile `dev.tex` from `LaTeX/` at least twice to resolve the table of contents
-   and cross-references. With pdfLaTeX, run this command twice:
-
-   ```sh
-   pdflatex -interaction=nonstopmode -halt-on-error -no-shell-escape dev.tex
-   ```
+1. Run `python scripts/build.py` from the repository root. It compiles the
+   template and reference with at least two TeX passes, validates their logs,
+   and creates a source ZIP of the self-contained template. Use
+   `--engine tectonic` when pdfLaTeX is unavailable.
 
 2. Check the final log for errors, undefined references, and overfull boxes.
    Resolve issues introduced by the update. If labels still change, rerun.
@@ -75,15 +73,15 @@ generated from `LaTeX/dev.tex`.
    Check code/output agreement, clipping, spacing, headers, footers, and the
    updated table of contents. Use a whole-document overview to catch pagination
    regressions.
-4. If shared package loading or definitions changed, compile `main.tex` too
+4. If shared package loading or definitions changed, compile `template/main.tex` too
    and verify compatibility with the report template.
-5. Only after successful verification, copy `LaTeX/dev.pdf` to the repository
+5. Only after successful verification, copy `build/reference/main.pdf` to the repository
    root as `Package Reference.pdf`. Never edit the PDF independently of its
    sources. If compilation is unavailable or fails, preserve the existing root
    PDF and state the limitation; do not claim it has been regenerated.
 6. Review `git diff --check`, the changed files, and Git status. Keep source and
    generated root PDF changes together. Do not track temporary render images,
-   logs, auxiliary files, or the ignored `LaTeX/dev.pdf`.
+   logs, auxiliary files, or the ignored `build/reference/main.pdf`.
 7. Report the additions (or the absence of new material), validation performed,
    and the actual commit/push status. Commit or publish according to the user's
    request and established branch workflow; this file alone does not authorize
@@ -96,3 +94,14 @@ template and reference and link here for the maintenance workflow. Avoid keeping
 duplicate procedural instructions in both files.
 
 Write each README prose paragraph on a single physical line. Do not insert manual line breaks to wrap sentences or paragraphs to a fixed column width. Keep blank lines between paragraphs and preserve the intentional structure of code blocks, lists, and Markdown tables.
+
+## Repository structure
+
+- `template/` must remain self-contained and compile when copied elsewhere.
+- `template/settings.tex` contains report metadata; `sections/` contains content.
+- Keep the reference's shared-style search path pointed at `../../template/`.
+- `docs/matlab.md` owns MATLAB usage documentation; the README links to it.
+- Run MATLAB examples from `matlab/examples/`; generated files belong in `build/`.
+- Keep local and GitHub builds on `scripts/build.py`; automation must not commit
+  generated PDFs or publish releases without a user request.
+- Use lowercase directory names. Preserve the public root PDF filename.

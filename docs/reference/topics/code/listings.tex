@@ -1,0 +1,41 @@
+\packageentry{code}{listings -- Source code}
+\partlabel{Template setup}
+\begin{referencecode}
+\usepackage{uc3m-report}
+\end{referencecode}
+The template defines \texttt{matlab} and \texttt{latex} in
+\texttt{styles/code/config.tex}. Use those styles directly.
+\partlabel{MATLAB code}
+\begin{referencecode}
+\begin{lstlisting}[style=matlab]
+x = linspace(0, 2*pi, 100);
+y = sin(x);
+plot(x, y)
+xlabel('x')
+ylabel('sin(x)')
+\end{lstlisting}
+\end{referencecode}
+
+\begin{lstlisting}[style=matlab]
+x = linspace(0, 2*pi, 100);
+y = sin(x);
+plot(x, y)
+xlabel('x')
+ylabel('sin(x)')
+\end{lstlisting}
+
+\partlabel{LaTeX code}
+\begin{referencecode}
+\begin{lstlisting}[style=latex]
+\begin{equation}
+    F = ma
+\end{equation}
+\end{lstlisting}
+\end{referencecode}
+
+\begin{lstlisting}[style=latex]
+\begin{equation}
+    F = ma
+\end{equation}
+\end{lstlisting}
+\input{topics/code/importing_files}

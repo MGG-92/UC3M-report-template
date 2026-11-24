@@ -1,14 +1,15 @@
-# MATLAB
+# Build outputs and generated examples
+/build/
+
+# MATLAB autosave
 *.asv
 
-# VSCode
+# Local editor and Python files
 .vscode/
-
-# Python
 __pycache__/
 *.pyc
 
-# LaTeX
+# LaTeX auxiliary files
 *.aux
 *.lof
 *.log
@@ -23,5 +24,8 @@ __pycache__/
 *.lb
 *.synctex.gz
 *.fdb_latexmk
-main.pdf
-dev.pdf
+*.xdv
+*.nav
+*.snm
+/template/main.pdf
+/docs/reference/main.pdf

@@ -1,0 +1,45 @@
+name: Build reports
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  latex:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out sources
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Install TeX dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends texlive-latex-extra texlive-science texlive-fonts-recommended lmodern
+      - name: Compile and validate both documents
+        run: python3 scripts/build.py --engine pdflatex
+      - name: Upload PDFs and template
+        uses: actions/upload-artifact@v7
+        with:
+          name: uc3m-report-template
+          if-no-files-found: error
+          path: |
+            build/template/main.pdf
+            build/reference/main.pdf
+            build/uc3m-report-template.zip
+      - name: Upload diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: latex-diagnostics
+          if-no-files-found: ignore
+          path: build/**/*.log

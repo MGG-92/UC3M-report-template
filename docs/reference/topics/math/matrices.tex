@@ -1,0 +1,115 @@
+
+\begin{nobreaks}
+\subsubsection*{Matrices and piecewise functions}
+\phantomsection\label{matrices}
+\begin{referencecode}
+\[
+    A = \begin{bmatrix}
+        1 & 2 \\
+        3 & 4
+    \end{bmatrix}
+    \qquad
+    \det(A) = \begin{vmatrix}
+        1 & 2 \\
+        3 & 4
+    \end{vmatrix} = -2
+\]
+\end{referencecode}
+
+\[
+    A = \begin{bmatrix}
+        1 & 2 \\
+        3 & 4
+    \end{bmatrix}
+    \qquad
+    \det(A) = \begin{vmatrix}
+        1 & 2 \\
+        3 & 4
+    \end{vmatrix} = -2
+\]
+
+\texttt{pmatrix}: parentheses; \texttt{bmatrix}: brackets;
+\texttt{vmatrix}: determinant bars; \texttt{matrix}: no delimiters.
+\end{nobreaks}
+
+\begin{referencecode}
+\[
+    f(x) = \begin{cases}
+        x^2, & \text{if } x \geq 0, \\
+        -x,  & \text{if } x < 0.
+    \end{cases}
+\]
+\end{referencecode}
+
+\[
+    f(x) = \begin{cases}
+        x^2, & \text{if } x \geq 0, \\
+        -x,  & \text{if } x < 0.
+    \end{cases}
+\]
+
+\begin{referencecode}
+\[
+    \left(\frac{a+b}{c}\right)^2
+    \qquad \sin(\theta)
+    \qquad \mathbf{v} = (v_x,v_y)
+\]
+\end{referencecode}
+
+\[
+    \left(\frac{a+b}{c}\right)^2
+    \qquad \sin(\theta)
+    \qquad \mathbf{v} = (v_x,v_y)
+\]
+
+Use \texttt{\string\text\{...\}} for words and commands such as
+\texttt{\string\sin} or \texttt{\string\log} for operators.
+
+\partlabel{Systems with taller rows}
+The template extends \texttt{cases} with optional \texttt{[L]} and
+\texttt{[XL]} row struts. Its definition is in
+\path{styles/math/config.tex} and uses \texttt{array}
+and the presets loaded by the Graphics package group.
+\begin{referencecode}
+\[
+\begin{cases}[L]
+    \zeta\omega_n = \dfrac{4-a}{2}, \\
+    \omega_n^2 = \dfrac{K}{a}.
+\end{cases}
+\]
+\end{referencecode}
+
+\[
+\begin{cases}[L]
+    \zeta\omega_n = \dfrac{4-a}{2}, \\
+    \omega_n^2 = \dfrac{K}{a}.
+\end{cases}
+\]
+
+Omit the option for ordinary \texttt{cases}. Both forms use a local
+\texttt{\string\arraystretch} of 1.2. The optional presets are
+template extensions, not standard \texttt{amsmath} syntax.
+\partlabel{A brace around equations aligned at the equals sign}
+Unlike the left-aligned columns in \texttt{cases}, \texttt{aligned}
+lets the alignment point sit at each equals sign. Place it inside
+display math and close the left brace with the invisible delimiter
+\verb|\right.|.
+\begin{referencecode}
+\[
+\left\{
+\begin{aligned}
+    a^4 - 24a^2 + 15 + 2K &= 0 \\
+    8a^3 - (32+K)a &= 0
+\end{aligned}
+\right.
+\]
+\end{referencecode}
+
+\[
+\left\{
+\begin{aligned}
+    a^4 - 24a^2 + 15 + 2K &= 0 \\
+    8a^3 - (32+K)a &= 0
+\end{aligned}
+\right.
+\]
